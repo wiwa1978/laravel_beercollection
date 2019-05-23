@@ -7,7 +7,7 @@ require 'recipe/laravel.php';
 set('application', 'laravel-collection');
 
 // Project repository
-set('repository', 'git@github.com:wiwa1978/laravel_collection.git');
+set('repository', 'git@github.com:wiwa1978/laravel_beercollection.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
