@@ -25,14 +25,14 @@ class StoreBeerItem extends FormRequest
     {
         return [
             'item_name'=>'required',
-            'item_description'=> 'required',
+            //'item_description'=> 'required',
             'category_id'=> 'required',
             'collection_id'=> 'required',
             'brewery_id'=> 'required',
             'amount_beeritems' => 'required',
             'wishlist' => 'required',
         ];
-       
+
         /*
         switch($this->request->get('item_type')) {
             case 'beerglasses':
@@ -49,64 +49,64 @@ class StoreBeerItem extends FormRequest
              case 'beerashtrays':
                  return [
                     'item_name'=>'required',
-                  
+
                 ];
                 break;
             case 'beerashtrays':
                  return [
                     'item_name'=>'required',
-                  
+
                 ];
                 break;
             case 'beerashtrays':
                  return [
                     'item_name'=>'required',
-                  
+
                 ];
                 break;
             case 'beerashtrays':
                  return [
                     'item_name'=>'required',
-                  
+
                 ];
                 break;
             case 'beerashtrays':
                  return [
                     'item_name'=>'required',
-                  
+
                 ];
                 break;
             case 'beerashtrays':
                  return [
                     'item_name'=>'required',
-                  
+
                 ];
                 break;
             case 'beerashtrays':
                  return [
                     'item_name'=>'required',
-                  
+
                 ];
                 break;
             case 'beerashtrays':
                  return [
                     'item_name'=>'required',
-                  
+
                 ];
                 break;
             case 'beerashtrays':
                  return [
                     'item_name'=>'required',
-                  
+
                 ];
                 break;
-            
+
             default:
                 return [
                     'item_name'=>'required',
-                   
+
                 ];
-          
+
 
         }
           */

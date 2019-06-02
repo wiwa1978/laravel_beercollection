@@ -43,12 +43,7 @@
                 <div class="card">
                     <div class="card-header text-orange"><b>Basic Information</b></div>
                     <div class="card-body">
-
-
                         <input name="item_type" type="hidden" value="{{ strtolower($type) }}">
-
-
-
                         <fieldset class="form-fieldset">
 
                         @if ($type == 'Beeritem')
@@ -56,7 +51,7 @@
                                 <label class="form-label" for="name">Item Type:</label>
                                 <select class="form-control" name="item_type" >
                                     @foreach($collection_types as $collection_type)
-                                        <option value="{{ $collection_type }}">{{ $collection_type }}</option>
+                                        <option value="{{ $collection_type }}">{{ ucfirst($collection_type) }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -65,17 +60,17 @@
                         @endif
 
                         <div class="form-group">
-                            <label class="form-label" for="name">Name:</label>
-                            <input type="text" class="form-control" name="item_name"/>
+                            <label class="form-label" for="name">Name: (*)</label>
+                            <input type="text" class="form-control" name="item_name" value="{{ old('item_name') }}" />
                         </div>
 
                         <div class="form-group">
                             <label class="form-label" for="description">Description:</label>
-                            <input type="text" class="form-control" name="item_description"/>
+                            <input type="text" class="form-control" name="item_description" value="{{ old('item_description') }}"/>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="amount_beeritems">Amount of beeritems:</label>
+                            <label class="form-label" for="amount_beeritems">Amount of {{ str_plural(strtolower($type)) }}: (*)</label>
                             <select class="form-control" name="amount_beeritems">
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -86,7 +81,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="form-label">Add to wishlist</div>
+                            <div class="form-label">Add to wishlist (*)</div>
                             <div class="custom-switches-stacked">
                                 <label class="custom-switch">
                                     <input type="radio" name="wishlist" value="1" class="custom-switch-input">
@@ -115,16 +110,16 @@
 
                         <fieldset class="form-fieldset">
                         <div class="form-group">
-                        <label class="form-label" for="collection">Collection:</label>
+                        <label class="form-label" for="collection">Collection: (*)</label>
                             <select class="form-control m-bot15" name="collection_id">
                                 @foreach($collections as $collection)
-                                    <option value="{{$collection->id}}">{{$collection->collection_name}}</option>
+                                    <option value="{{ $collection->id }}">{{$collection->collection_name}}</option>
                                 @endForeach
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="brewery">Brewery:</label>
+                            <label class="form-label" for="brewery">Brewery: (*)</label>
                             <select class="form-control" name="brewery_id" >
                                 @foreach($breweries as $brewery)
                                     <option value="{{ $brewery->id }}">{{ $brewery->brewery_name }}</option>
@@ -133,7 +128,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="tags">Category:</label>
+                            <label class="form-label" for="tags">Category: (*)</label>
                             <select class="form-control" name="category_id" >
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -142,7 +137,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="tags">Tags:</label>
+                            <label class="form-label" for="tags">Tags:  (*)</label>
                             <select class="form-control js-example-basic-multiple" name="beeritem_tags[]" multiple="multiple">
                                 @foreach($tags as $tag)
                                     <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
@@ -150,7 +145,7 @@
                             </select>
                         </div>
                         </fieldset>
-
+                         (*) mandatory fields
 
                     </div>
                 </div>

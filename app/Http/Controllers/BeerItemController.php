@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Requests\storeBeeritem;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use Validator;
 
 class BeeritemController extends Controller
 {
@@ -82,7 +83,8 @@ class BeeritemController extends Controller
         $tags = Tag::where('user_id', Auth::id())->get();
         $breweries = Brewery::where('user_id', Auth::id())->get();
         $type = $request->item_type;
-        $collection_types = Collection::getCollectionTypes();
+        $collection_types = Collection::where('user_id', Auth::id())->distinct()->pluck('collection_type');
+
 
 
 
@@ -135,7 +137,7 @@ class BeeritemController extends Controller
 
         $file = $request->file('file');
 
-        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+        $name = 'user_' . Auth::id() . '_' . uniqid() . '_' . trim($file->getClientOriginalName());
 
         $file->move($path, $name);
 
@@ -173,6 +175,26 @@ class BeeritemController extends Controller
     {
         //return $request;
         $validated = $request->validated();
+
+
+        $validator = Validator::make($request->all(), [
+            'item_name'=>'required',
+            'item_description'=> 'required',
+            'category_id'=> 'required',
+            'collection_id'=> 'required',
+            'brewery_id'=> 'required',
+            'amount_beeritems' => 'required',
+            'wishlist' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('beeritems/create?item_type=beerglasses')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+
+
         $wishlist = $this->processWishlist($request);
         $type = $request->item_type;
 
@@ -214,10 +236,11 @@ class BeeritemController extends Controller
         ]);
         $beeritem->save();
 
-
         foreach ($request->input('document', []) as $file) {
             $beeritem->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('BeeritemImagesCollection');
         }
+
+
 
         /*
         $values=$request->session()->pull('filenames');

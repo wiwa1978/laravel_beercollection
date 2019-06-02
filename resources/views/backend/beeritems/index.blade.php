@@ -69,6 +69,7 @@
                                 <td>@sortablelink('item_name')</td>
                                 <td>Brewery</td>
                                 <td>Collection</td>
+                                <td>Amount</td>
                                 <td>Tags</td>
                                 <td>Category</td>
                                 <td align="center">Action</td>
@@ -82,6 +83,7 @@
 
                                     <td>{{$beeritem->brewery->brewery_name}}</td>
                                     <td>{{$beeritem->collection->collection_name}}</td>
+                                    <td>{{$beeritem->item_amount}}</td>
                                     <td>
                                     @if(!$beeritem->tags->isEmpty() || !$beeritem->tags->count() == 0)
                                         @foreach($beeritem->tags as $tag)

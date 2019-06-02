@@ -38,7 +38,7 @@ class CreateBeerItemsTable extends Migration
                 ->onDelete( 'cascade' );
             $table->enum('item_type', ['beerglasses', 'beerashtrays', 'beercontainers', 'beerlabels', 'beerbottles', 'beerplateaus', 'beeradvertisements', 'beercoasters', 'beerstonejugs' ]);
             $table->string('item_name');
-            $table->text('item_description');
+            $table->text('item_description')->nullable();
             $table->unsignedInteger('item_amount')->default('0');
             $table->boolean('item_wishlist')->default(false);
             $table->string('item_type_1')->nullable();

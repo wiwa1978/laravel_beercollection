@@ -238,13 +238,16 @@
 
 
                 <form class="form-inline d-flex" action="{{ route('register') }}" method="post" novalidate>
+                    <div class="form-group">
                     @csrf
+                        <div class="form-group">
                             <input
                                 type="text"
 
                                 class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
                                 placeholder="Enter name"
                                 name="name"
+
                                 value="{{ old('name') }}"
                                 required>
                             @if ($errors->has('name'))
@@ -252,7 +255,8 @@
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
-
+                        </div>
+                        <div class="form-group">
                             <input
                                 type="email"
                                 class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
@@ -265,7 +269,8 @@
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
-
+                        </div>
+                        <div class="form-group">
                             <input
                                 type="password"
                                 class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
@@ -277,20 +282,21 @@
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                             @endif
-
-                         <input
+                        </div>
+                        <div class="form-group">
+                            <input
                                 type="password"
                                      class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
                                 placeholder="Confirm Password"
                                 name="password_confirmation"
                                 id="password-confirm">
 
-
-
+                            </div>
+                             <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block">
                                 @lang('Create new account')
                             </button>
-
+                             </div>
 
                 </form>
 

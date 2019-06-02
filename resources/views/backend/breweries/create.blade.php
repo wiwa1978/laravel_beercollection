@@ -23,37 +23,37 @@
 
                             <div class="form-group">
                                 <label class="form-label" for="name">Brewery Name:</label>
-                                <input type="text" class="form-control" name="brewery_name"/>
+                                <input type="text" class="form-control" name="brewery_name" value="{{ old('brewery_name') }}"/>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="description">Brewery Description:</label>
-                                <input type="text" class="form-control" name="brewery_description"/>
+                                <input type="text" class="form-control" name="brewery_description" value="{{ old('brewery_description') }}"/>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="description">Brewery Zipcode:</label>
-                                <input type="text" class="form-control" name="brewery_zipcode"/>
+                                <input type="text" class="form-control" name="brewery_zipcode" value="{{ old('brewery_zipcode') }}"/>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="description">Brewery Town:</label>
-                                <input type="text" class="form-control" name="brewery_town"/>
+                                <input type="text" class="form-control" name="brewery_town" value="{{ old('brewery_town') }}"/>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="description">Brewery SubTown:</label>
-                                <input type="text" class="form-control" name="brewery_subtown"/>
+                                <input type="text" class="form-control" name="brewery_subtown" value="{{ old('brewery_subtown') }}"/>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="description">Brewery Province:</label>
-                                <input type="text" class="form-control" name="brewery_province"/>
+                                <input type="text" class="form-control" name="brewery_province" value="{{ old('brewery_province') }}"/>
                             </div>
 
                              <div class="form-group">
                                 <label class="form-label" for="description">Brewery Country:</label>
-                                <input type="text" class="form-control" name="brewery_country"/>
+                                <input type="text" class="form-control" name="brewery_country" value="{{ old('brewery_country') }}"/>
                             </div>
 
                             <div class="btn-list">
@@ -69,18 +69,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">Brewery Photos</div>
-                    <label id="test">One or more files is exceeding largest filesize</label>
-                    <div class="card-body">
-                        <form  method="post" action="{{ route('image.store') }}" enctype="multipart/form-data" class="dropzone" id="dropzone">
-                        @csrf
 
-                        </form>
-                    </div>
-                </div>
-            </div>
 
 
 

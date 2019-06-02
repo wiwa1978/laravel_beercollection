@@ -45,6 +45,19 @@ class Collection extends Model
         ];
     }
 
+    public static function getCollectionType_Beerglasses()
+    {
+        return [
+            self::TYPE_BEERGLASSES => self::TYPE_BEERGLASSES,
+        ];
+    }
+
+    public static function getCollectionTypesPerUser($user)
+    {
+        return [
+            Collection::where('user_id', $user)
+        ];
+    }
 
     public function beeritem()
     {

@@ -50,10 +50,13 @@
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                    <a class="dropdown-item" href="{{ route('profile.index') }}">
                                         <i class="dropdown-icon fe fe-user"></i> Profile
                                     </a>
                                     <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('manual.index') }}">
+                                        <i class="dropdown-icon fe fe-help-circle"></i> Manual
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('tickets.index') }}">
                                         <i class="dropdown-icon fe fe-help-circle"></i> Need help?
                                     </a>
@@ -96,7 +99,7 @@
                                 <li class="nav-item">
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Overview</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
-                                        <a href="{{ route('beeritems.create') }}" class="dropdown-item ">Create item</a>
+
                                         <a href="{{ route('beeritems.index') }}" class="dropdown-item ">All items</a>
                                         <a href="{{ route('beeritems.grid') }}" class="dropdown-item ">All items: grid</a>
                                         <a href="{{ route('beeritems.spares') }}" class="dropdown-item ">All items: spare</a>
