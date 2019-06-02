@@ -246,8 +246,7 @@
                                 placeholder="Enter name"
                                 name="name"
                                 value="{{ old('name') }}"
-                                required
-                                autofocus>
+                                required>
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -327,7 +326,7 @@
                     placeholder="Enter email"
                     value="{{ old('email') }}"
                     required
-                    autofocus>
+                    >
                     @if ($errors->has('email'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('email') }}</strong>
