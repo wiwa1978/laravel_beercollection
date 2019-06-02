@@ -69,18 +69,16 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::post('image/store','BeeritemController@storeImage')->name('image.store');
 
 
-    Route::view('profile', 'profile.index')->name('profile');
+    Route::view('profile', 'backend.profile.index')->name('profile');
 
-
+    // Routes for Support
+    Route::resource('tickets', 'TicketController');
 
 });
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

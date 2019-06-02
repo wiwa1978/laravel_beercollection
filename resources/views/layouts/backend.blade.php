@@ -13,12 +13,12 @@
 
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend.css') }}">
     @yield('css')
 
 
        <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/backend.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -27,7 +27,7 @@
                     <div class="d-flex">
                         <a class="header-brand" href="{{ route('dashboard')}}">
                             <img
-                                src="{{ asset('storage/logo/beercollection_logo.png')}}"
+                                src="{{ asset('img/logo/beercollection_logo.png')}}"
                                 class="header-brand-img"
                                 alt="beer logo">
                         </a>
@@ -53,18 +53,8 @@
                                     <a class="dropdown-item" href="{{ route('profile') }}">
                                         <i class="dropdown-icon fe fe-user"></i> Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="dropdown-icon fe fe-settings"></i> Settings
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="float-right"><span class="badge badge-primary">6</span></span>
-                                        <i class="dropdown-icon fe fe-mail"></i> Inbox
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="dropdown-icon fe fe-send"></i> Message
-                                    </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{ route('tickets.index') }}">
                                         <i class="dropdown-icon fe fe-help-circle"></i> Need help?
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
