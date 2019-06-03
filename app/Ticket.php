@@ -7,10 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     protected $fillable = [
-        'ticket_name', 'ticket_type', 'ticket_description', 'user_id'
+        'user_id', 'ticket_id', 'ticket_title', 'ticket_priority', 'type_id', 'ticket_description', 'ticket_status'
     ];
+
     public function user()
     {
         return $this->belongsTo('App\User');
     }
+
+    public function tickettype()
+    {
+        return $this->belongsTo('App\TicketType');
+    }
 }
+
+
+

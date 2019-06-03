@@ -176,7 +176,7 @@ class BeeritemController extends Controller
         //return $request;
         $validated = $request->validated();
 
-
+        /*
         $validator = Validator::make($request->all(), [
             'item_name'=>'required',
             'item_description'=> 'required',
@@ -192,6 +192,7 @@ class BeeritemController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
+        */
 
 
 

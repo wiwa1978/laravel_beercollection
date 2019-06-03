@@ -12,14 +12,14 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
         $permissions = [
            'manage-beerglasses',
            'manage-beerlabels',
            'manage-beercoasters',
            'manage-beerashtrays',
            'manage-beercontainers',
-           'manaege-beerbottles',
+           'manage-beerbottles',
            'manage-beerplateaus',
            'manage-beeradvertisements',
            'manage-beerstonejugs'
@@ -31,7 +31,7 @@ class PermissionTableSeeder extends Seeder
                 'name' => $permission
             ]);
         }
-        
+
     }
 }
 

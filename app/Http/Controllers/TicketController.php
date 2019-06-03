@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ticket;
+use App\TicketType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,10 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::where('user_id', Auth::id())->orderBy('id','DESC')->paginate(10);
-        return view('backend.tickets.index', compact('tickets'));
+        $tickets = Ticket::where('user_id', Auth::user()->id)->paginate(10);
+        $ticket_types = TicketType::all();
+
+        return view('backend.tickets.index', compact('tickets', 'ticket_types'));
     }
 
     /**
@@ -26,7 +29,9 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        $ticket_types = TicketType::all();
+
+        return view('backend.tickets.create', compact('ticket_types'));
     }
 
     /**
@@ -37,8 +42,33 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request;
+
+        $this->validate($request, [
+            'ticket_title'          =>      'required',
+            'ticket_type'           =>      'required',
+            'ticket_priority'       =>      'required',
+            'ticket_description'    =>      'required'
+        ]);
+
+        $ticket = new Ticket([
+            'ticket_title'          =>      $request->input('ticket_title'),
+            'user_id'               =>      Auth::user()->id,
+            'ticket_id'             =>      strtoupper(str_random(10)),
+            'type_id'               =>      $request->input('ticket_type'),
+            'ticket_priority'       =>      $request->input('ticket_priority'),
+            'ticket_description'    =>      $request->input('ticket_description'),
+            'ticket_status'         =>      "Open",
+        ]);
+
+        $ticket->save();
+
+        //$mailer->sendTicketInformation(Auth::user(), $ticket);
+
+        return redirect()->back()->with("success", "A ticket with ID '$ticket->ticket_id' has been opened.");
     }
+
+
 
     /**
      * Display the specified resource.
@@ -48,7 +78,13 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        //
+        //dd($ticket);
+        //$ticket_types = TicketType::all();
+        $ticket_type = TicketType::where('id', $ticket->type_id)->firstOrFail();
+
+
+
+        return view('backend.tickets.show', compact('ticket', 'ticket_type'));
     }
 
     /**

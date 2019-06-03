@@ -83,7 +83,7 @@
 
                                     <td>{{$beeritem->brewery->brewery_name}}</td>
                                     <td>{{$beeritem->collection->collection_name}}</td>
-                                    <td>{{$beeritem->item_amount}}</td>
+                                    <td align="center">{{$beeritem->item_amount}}</td>
                                     <td>
                                     @if(!$beeritem->tags->isEmpty() || !$beeritem->tags->count() == 0)
                                         @foreach($beeritem->tags as $tag)

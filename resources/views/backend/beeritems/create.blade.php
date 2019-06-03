@@ -72,11 +72,11 @@
                         <div class="form-group">
                             <label class="form-label" for="amount_beeritems">Amount of {{ str_plural(strtolower($type)) }}: (*)</label>
                             <select class="form-control" name="amount_beeritems">
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                                <option value="4">Four</option>
-                                <option value="5">Five</option>
+                                <option value="1" {{ old("amount_beeritems") == 1 ? "selected" : "" }}>One</option>
+                                <option value="2" {{ old("amount_beeritems") == 2 ? "selected" : "" }}>Two</option>
+                                <option value="3" {{ old("amount_beeritems") == 3 ? "selected" : "" }}>Three</option>
+                                <option value="4" {{ old("amount_beeritems") == 4 ? "selected" : "" }}>Four</option>
+                                <option value="5" {{ old("amount_beeritems") == 5 ? "selected" : "" }}>Five</option>
                             </select>
                         </div>
 
@@ -84,12 +84,12 @@
                             <div class="form-label">Add to wishlist (*)</div>
                             <div class="custom-switches-stacked">
                                 <label class="custom-switch">
-                                    <input type="radio" name="wishlist" value="1" class="custom-switch-input">
+                                    <input type="radio" name="wishlist" value="1" {{ old("wishlist") == 1 ? "checked" : "" }} class="custom-switch-input">
                                     <span class="custom-switch-indicator"></span>
                                     <span class="custom-switch-description">Yes</span>
                                 </label>
                                  <label class="custom-switch">
-                                    <input type="radio" name="wishlist" value="0" class="custom-switch-input" checked>
+                                    <input type="radio" name="wishlist" value="0" {{ old("wishlist") == 0 ? "checked" : "" }} class="custom-switch-input" >
                                     <span class="custom-switch-indicator"></span>
                                     <span class="custom-switch-description">No</span>
                                 </label>
@@ -113,7 +113,7 @@
                         <label class="form-label" for="collection">Collection: (*)</label>
                             <select class="form-control m-bot15" name="collection_id">
                                 @foreach($collections as $collection)
-                                    <option value="{{ $collection->id }}">{{$collection->collection_name}}</option>
+                                    <option value="{{ $collection->id }}" {{ old("collection_id") == $collection->id ? "selected" : "" }}  >{{$collection->collection_name}}</option>
                                 @endForeach
                             </select>
                         </div>
@@ -122,7 +122,7 @@
                             <label class="form-label" for="brewery">Brewery: (*)</label>
                             <select class="form-control" name="brewery_id" >
                                 @foreach($breweries as $brewery)
-                                    <option value="{{ $brewery->id }}">{{ $brewery->brewery_name }}</option>
+                                    <option value="{{ $brewery->id }}" {{ old("brewery_id") == $brewery->id ? "selected" : "" }}>{{ $brewery->brewery_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -131,7 +131,7 @@
                             <label class="form-label" for="tags">Category: (*)</label>
                             <select class="form-control" name="category_id" >
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                    <option value="{{ $category->id }}" {{ old("category_id") == $category->id ? "selected" : "" }}>{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -165,7 +165,7 @@
                         @if(strtolower($type) === 'beerglasses')
                             <div class="form-group">
                                 <label class="form-label" for="color">Item1 Type:</label>
-                                <input type="text" class="form-control" name="item_type_1"/>
+                                <input type="text" class="form-control" name="item_type_1" value="{{ old('item_type_1') }}"/>
                             </div>
                             @endif
 
@@ -177,14 +177,14 @@
                             @if(strtolower($type) === 'beerashtrays' || strtolower($type) === 'beerbottles' || strtolower($type) === 'beerplateaus' || strtolower($type) === 'beercoasters' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="color">Item Color:</label>
-                                <input type="text" class="form-control" name="item_color"/>
+                                <input type="text" class="form-control" name="item_color" value="{{ old('item_color') }}"/>
                             </div>
                              @endif
 
                             @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beerashtrays' || strtolower($type) === 'beerlabels' || strtolower($type) === 'beerplateaus' || strtolower($type) === 'beeradvertisements' || strtolower($type) === 'beercoasters' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="text_color">Text Color:</label>
-                                <input type="text" class="form-control" name="item_text_color"/>
+                                <input type="text" class="form-control" name="item_text_color" value="{{ old('text_color') }}"/>
                             </div>
                             @endif
 
@@ -192,21 +192,21 @@
                             @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beerbottles' || strtolower($type) === 'beeradvertisements')
                             <div class="form-group">
                                 <label class="form-label" for="type_print">Type Print:</label>
-                                <input type="text" class="form-control" name="item_type_print"/>
+                                <input type="text" class="form-control" name="item_type_print" value="{{ old('item_type_print') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beerlabels' || strtolower($type) === 'beerbottles' || strtolower($type) === 'beerplateaus' || strtolower($type) === 'beeradvertisements' || strtolower($type) === 'beercoasters'  || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="drawing">Drawing</label>
-                                <input type="text" class="form-control" name="item_drawing"/>
+                                <input type="text" class="form-control" name="item_drawing" value="{{ old('item_drawing') }}"/>
                             </div>
                             @endif
 
                             {{--  No if statement as cluster needs to be shown for all items --}}
                             <div class="form-group">
                                 <label class="form-label" for="text_color">Cluster:</label>
-                                <input type="text" class="form-control" name="item_cluster"/>
+                                <input type="text" class="form-control" name="item_cluster" value="{{ old('item_cluster') }}"/>
                             </div>
 
 
@@ -214,35 +214,35 @@
                             @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beercontainers' || strtolower($type) === 'beerbottles' || strtolower($type) === 'beerplateaus' || strtolower($type) === 'beercoasters' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="height">Height:</label>
-                                <input type="text" class="form-control" name="item_height"/>
+                                <input type="text" class="form-control" name="item_height" value="{{ old('item_height') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beercontainers' || strtolower($type) === 'beerlabels' || strtolower($type) === 'beerplateaus' || strtolower($type) === 'beeradvertisements' || strtolower($type) === 'beercoasters')
                             <div class="form-group">
                                 <label class="form-label" for="width">Width:</label>
-                                <input type="text" class="form-control" name="item_width"/>
+                                <input type="text" class="form-control" name="item_width" value="{{ old('item_width') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beercontainers' || strtolower($type) === 'beerlabels' || strtolower($type) === 'beerplateaus' || strtolower($type) === 'beeradvertisements' || strtolower($type) === 'beercoasters')
                             <div class="form-group">
                                 <label class="form-label" for="length">Length:</label>
-                                <input type="text" class="form-control" name="item_length"/>
+                                <input type="text" class="form-control" name="item_length" value="{{ old('item_length') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beerashtrays' || strtolower($type) === 'beerplateaus' || strtolower($type) === 'beercoasters' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="diameter_top">Diameter top:</label>
-                                <input type="text" class="form-control" name="item_diameter_top"/>
+                                <input type="text" class="form-control" name="item_diameter_top" value="{{ old('item_diameter_top') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beerashtrays' || strtolower($type) === 'beerplateaus' ||  strtolower($type) === 'beercoasters' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="diameter_bottom">Diameter bottom:</label>
-                                <input type="text" class="form-control" name="item_diameter_bottom"/>
+                                <input type="text" class="form-control" name="item_diameter_bottom" value="{{ old('item_diameter_bottom') }}"/>
                             </div>
                             @endif
                         </fieldset>
@@ -259,81 +259,81 @@
                          @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="weight">Weight:</label>
-                                <input type="text" class="form-control" name="item_weight"/>
+                                <input type="text" class="form-control" name="item_weight" value="{{ old('item_weight') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beerlabels' || strtolower($type) === 'beerbottles' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="size_indication">Size Indication:</label>
-                                <input type="text" class="form-control" name="item_size_indication"/>
+                                <input type="text" class="form-control" name="item_size_indication" value="{{ old('item_size_indication') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beerglasses')
                             <div class="form-group">
                                 <label class="form-label" for="rib_type">Rib Type:</label>
-                                <input type="text" class="form-control" name="item_rib_type"/>
+                                <input type="text" class="form-control" name="item_rib_type" value="{{ old('item_rib_type') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beerglasses')
                             <div class="form-group">
                                 <label class="form-label" for="facets">Facets:</label>
-                                <input type="text" class="form-control" name="item_facets"/>
+                                <input type="text" class="form-control" name="item_facets" value="{{ old('item_facets') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beerashtrays' || strtolower($type) === 'beeradvertisements' || strtolower($type) === 'beercoasters' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="model">Model:</label>
-                                <input type="text" class="form-control" name="item_model"/>
+                                <input type="text" class="form-control" name="item_model" value="{{ old('item_model') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beerashtrays' || strtolower($type) === 'beerplateaus' || strtolower($type) === 'beeradvertisements' || strtolower($type) === 'beercoasters' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="material">Material:</label>
-                                <input type="text" class="form-control" name="item_material"/>
+                                <input type="text" class="form-control" name="item_material" value="{{ old('item_material') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beercontainers' || strtolower($type) === 'beeradvertisements')
                             <div class="form-group">
                                 <label class="form-label" for="year">Year:</label>
-                                <input type="text" class="form-control" name="item_year"/>
+                                <input type="text" class="form-control" name="item_year" value="{{ old('item_year') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beerlabels' || strtolower($type) === 'beerbottles' || strtolower($type) === 'beerplateaus' || strtolower($type) === 'beeradvertisements' || strtolower($type) === 'beercoasters' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="language">Language:</label>
-                                <input type="text" class="form-control" name="item_language"/>
+                                <input type="text" class="form-control" name="item_language" value="{{ old('item_language') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beerglasses' || strtolower($type) === 'beerbottles' || strtolower($type) === 'beerstonejugs')
                             <div class="form-group">
                                 <label class="form-label" for="size">Size:</label>
-                                <input type="text" class="form-control" name="item_size"/>
+                                <input type="text" class="form-control" name="item_size" value="{{ old('item_size') }}"/>
                             </div>
                             @endif
 
                             @if(strtolower($type) === 'beercontainers')
                             <div class="form-group">
                                 <label class="form-label" for="boxes">Boxes:</label>
-                                <input type="text" class="form-control" name="item_boxes"/>
+                                <input type="text" class="form-control" name="item_boxes" value="{{ old('item_boxes') }}"/>
                             </div>
                             @endif
 
                             <div class="form-group">
                                 <label class="form-label" for="extra_1">Extra 1:</label>
-                                <input type="text" class="form-control" name="item_extra_1"/>
+                                <input type="text" class="form-control" name="item_extra_1" value="{{ old('item_extra_1') }}"/>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="extra_2">Extra 2:</label>
-                                <input type="text" class="form-control" name="item_extra_2"/>
+                                <input type="text" class="form-control" name="item_extra_2" value="{{ old('item_extra_2') }}"/>
                             </div>
                         </fieldset>
                     </div>

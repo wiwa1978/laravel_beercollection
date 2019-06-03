@@ -237,10 +237,10 @@
 
 
 
-                <form class="form-inline d-flex" action="{{ route('register') }}" method="post" novalidate>
+                <form class="form-inline d-flex flex-column" action="{{ route('register') }}" method="post" novalidate>
                     <div class="form-group">
                     @csrf
-                        <div class="form-group">
+                         <div class="p-3">
                             <input
                                 type="text"
 
@@ -255,8 +255,8 @@
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
-                        </div>
-                        <div class="form-group">
+                                </div>
+                                 <div class="p-3">
                             <input
                                 type="email"
                                 class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
@@ -269,8 +269,9 @@
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
-                        </div>
-                        <div class="form-group">
+                                 </div>
+                                  <div class="p-3">
+
                             <input
                                 type="password"
                                 class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
@@ -282,8 +283,9 @@
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                             @endif
-                        </div>
-                        <div class="form-group">
+                            </div>
+                             <div class="p-3">
+
                             <input
                                 type="password"
                                      class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
@@ -291,12 +293,17 @@
                                 name="password_confirmation"
                                 id="password-confirm">
 
-                            </div>
-                             <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">
+                             </div>
+                             <div class="p-2">
+                            <button type="submit" class="btn btn-primary mx-auto">
                                 @lang('Create new account')
                             </button>
+
+
+
+
                              </div>
+
 
                 </form>
 
@@ -320,9 +327,9 @@
             <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
             <h2 class="text-white mb-5">Login to your account</h2>
 
-            <form class="form-inline d-flex" action="{{ route('login') }}" method="post" novalidate>
+            <form class="form-inline d-flex flex-column " action="{{ route('login') }}" method="post" novalidate>
             @csrf
-
+                <div class="p-3">
                 <input
                     type="email"
                     class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
@@ -339,8 +346,8 @@
                         </span>
                     @endif
 
-
-
+                    </div>
+                    <div class="p-3">
 
                             <input
                                 type="password"
@@ -354,13 +361,13 @@
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                             @endif
+                            </div>
 
 
 
-
-
+                         <div class="p-2">
                          <button type="submit" class="btn btn-primary mx-auto">Login</button>
-
+                         </div>
                 </form>
 
 

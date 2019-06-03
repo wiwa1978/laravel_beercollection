@@ -76,6 +76,12 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     // Routes for Support
     Route::resource('tickets', 'TicketController');
 
+    //Route::get('new_ticket', 'TicketController@create')->name('tickets.create');
+    //Route::post('new_ticket', 'TicketController@store')->name('tickets.store');
+    //Route::get('my_tickets', 'TicketController@index')->name('tickets.index');
+    //Route::get('tickets/{ticket}', 'TicketController@show')->name('tickets.show');
+
+
 });
 
 

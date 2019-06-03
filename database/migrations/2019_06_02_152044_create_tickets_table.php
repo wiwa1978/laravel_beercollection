@@ -19,9 +19,12 @@ class CreateTicketsTable extends Migration
             $table->foreign( 'user_id' )
                 ->references( 'id' )->on( 'users' )
                 ->onUpdate( 'cascade' );
-            $table->string('ticket_name');
-            $table->enum('ticket_type', ['Defect', 'Feature' ]);
+            $table->integer('type_id')->unsigned();;
+            $table->string('ticket_id')->unique();
+            $table->string('ticket_title');
+            $table->string('ticket_priority');
             $table->longText('ticket_description');
+            $table->string('ticket_status');
             $table->timestamps();
         });
     }

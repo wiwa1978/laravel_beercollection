@@ -57,7 +57,7 @@
                                     <a class="dropdown-item" href="{{ route('manual.index') }}">
                                         <i class="dropdown-icon fe fe-help-circle"></i> Manual
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('tickets.index') }}">
+                                    <a class="dropdown-item" href="{{ route('tickets.create') }}">
                                         <i class="dropdown-icon fe fe-help-circle"></i> Need help?
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -238,7 +238,14 @@
                                     </div>
                                 </li>
 
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Support</a>
+                                    <div class="dropdown-menu dropdown-menu-arrow">
+                                    <a href="{{ route('tickets.create',['item_type' => 'beerglasses']) }}" class="dropdown-item ">Create Ticket</a>
+                                    <a href="{{ route('tickets.index',['item_type' => 'beerglasses']) }}" class="dropdown-item ">Tickets Overview</a>
 
+                                    </div>
+                                </li>
 
                                 @endhasrole
 
