@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Requests\storeBeeritem;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
-use Validator;
+
 
 class BeeritemController extends Controller
 {
@@ -136,10 +136,19 @@ class BeeritemController extends Controller
         }
 
         $file = $request->file('file');
+        $imageName = $file->getClientOriginalName();
 
         $name = 'user_' . Auth::id() . '_' . uniqid() . '_' . trim($file->getClientOriginalName());
-
         $file->move($path, $name);
+
+        Image::load($path .'/'.$name)
+            ->width(500)
+            ->height(500)
+            ->optimize()
+            ->save(storage_path('tmp/uploads/final_'. $name ));
+
+        unlink(storage_path('tmp/uploads/'. $name ));
+        //$request->session()->push('filenames', '_new'.$imageName);
 
         return response()->json([
             'name'          => $name,
@@ -237,9 +246,43 @@ class BeeritemController extends Controller
         ]);
         $beeritem->save();
 
+        //$lastInsertedId = $beeritem->id;
+
         foreach ($request->input('document', []) as $file) {
-            $beeritem->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('BeeritemImagesCollection');
+            switch (strtolower($type)) {
+                case 'beerglasses':
+                    $beeritem->addMedia(storage_path('tmp/uploads/final_' . $file ))->toMediaCollection('images_beerglasses');
+                    break;
+                case 'beerlabels':
+                    $beeritem->addMedia(storage_path('tmp/uploads/final_'. $file ))->toMediaCollection('images_beerlabels');
+                    break;
+                case 'beerlcoasters':
+                    $beeritem->addMedia(storage_path('tmp/uploads/final_'. $file ))->toMediaCollection('images_beercoaster');
+                    break;
+                case 'beerashtrays':
+                    $beeritem->addMedia(storage_path('tmp/uploads/final_'. $file ))->toMediaCollection('images_beerashtrays');
+                    break;
+                case 'beercontainers':
+                    $beeritem->addMedia(storage_path('tmp/uploads/final_'. $file ))->toMediaCollection('images_beercontainers');
+                    break;
+                case 'beerbottles':
+                    $beeritem->addMedia(storage_path('tmp/uploads/final_'. $file ))->toMediaCollection('images_beerbottels');
+                    break;
+                case 'beerplateaus':
+                    $beeritem->addMedia(storage_path('tmp/uploads/final_'. $file ))->toMediaCollection('images_beerplateaus');
+                    break;
+                case 'beeradvertisements':
+                    $beeritem->addMedia(storage_path('tmp/uploads/final_'. $file ))->toMediaCollection('images_beeradvertisements');
+                    break;
+                case 'beerstonejugs':
+                    $beeritem->addMedia(storage_path('tmp/uploads/final_'. $file ))->toMediaCollection('images_beerstonejugs');
+                    break;
+            }
         }
+
+
+
+
 
 
 
@@ -257,7 +300,7 @@ class BeeritemController extends Controller
         */
 
         $beeritem->tags()->attach($request->beeritem_tags);
-        $request->session()->forget('filenames');
+        //$request->session()->forget('filenames');
 
         return redirect('beeritems')->with('success', 'Beeritem has been created successfully');
     }
@@ -279,12 +322,45 @@ class BeeritemController extends Controller
 
 
     public function show(Beeritem $beeritem) {
-        $categories = Category::where('user_id', Auth::id())->get();
+
         $tags =  Tag::where('user_id', Auth::id())->get();
-        $breweries = Brewery::where('user_id', Auth::id())->get();
+        //$breweries = Brewery::where('user_id', Auth::id())->get();
+        $category = $beeritem->category()->first();
+        $brewery = $beeritem->brewery()->first();
+        $collection = $beeritem->collection()->first();
+
         $type = $beeritem->item_type;
         $type = ucfirst($type);
-        $beeritemImages = $beeritem->getMedia('BeeritemImagesCollection');
+
+        switch (strtolower($type)) {
+            case 'beerglasses':
+                $beeritemImages = $beeritem->getMedia('images_beerglasses');
+                break;
+            case 'beerlabels':
+                $beeritemImages = $beeritem->getMedia('images_beerlabels');
+                break;
+            case 'beerlcoasters':
+                $beeritemImages = $beeritem->getMedia('images_beercoaster');
+                break;
+            case 'beerashtrays':
+                $beeritemImages = $beeritem->getMedia('images_beerashtrays');
+                break;
+            case 'beercontainers':
+                $beeritemImages = $beeritem->getMedia('images_beercontainers');
+                break;
+            case 'beerbottles':
+                $beeritemImages = $beeritem->getMedia('images_beerbottels');
+                break;
+            case 'beerplateaus':
+                $beeritemImages = $beeritem->getMedia('images_beerplateaus');
+                break;
+            case 'beeradvertisements':
+                $beeritemImages = $beeritem->getMedia('images_beeradvertisements');
+                break;
+            case 'beerstonejugs':
+                $beeritemImages = $beeritem->getMedia('images_beerstonejugs');
+                break;
+        }
 
 /*
  if($beeritem->user_id == Auth::id()) {
@@ -294,7 +370,7 @@ class BeeritemController extends Controller
             abort(403);
         }
 */
-
+        /*
         if ($type) {
             $collections = Collection::where('user_id', Auth::id())
                 ->where('collection_type', '=', $type)
@@ -307,8 +383,8 @@ class BeeritemController extends Controller
                 ->orderBy('id','DESC')->get();
             $type = ucfirst('Teeritem');
         }
-
-        return view('backend.beeritems.show', compact('beeritem', 'beeritemImages', 'type', 'tags', 'categories', 'collections', 'breweries'));
+        */
+        return view('backend.beeritems.show', compact('beeritem', 'beeritemImages', 'type', 'tags', 'category', 'collection', 'brewery'));
 
 
     }
@@ -325,7 +401,15 @@ class BeeritemController extends Controller
     public function edit(Beeritem $beeritem)
     {
         $categories = Category::where('user_id', Auth::id())->get();
-        $tags =  Tag::where('user_id', Auth::id())->get();
+        $tags =  Tag::where('user_id', Auth::id())->get(); //contains all the tags
+        $tags_user =  $beeritem->tags()->get(); //contains all the tags the user has selected
+        //the id's for each tag the user selected are stored in an array 'tagIds' so we can use it in the edit
+        //view to loop over it
+        foreach($tags_user as $tag_user)
+        {
+            $tagIds[] = $tag_user->id;
+        }
+
         $breweries = Brewery::where('user_id', Auth::id())->get();
         $type = $beeritem->item_type;
         $type = ucfirst($type);
@@ -343,7 +427,7 @@ class BeeritemController extends Controller
             $type = ucfirst('Teeritem');
         }
 
-        return view('backend.beeritems.edit', compact('beeritem', 'type', 'tags', 'categories', 'collections', 'breweries'));
+        return view('backend.beeritems.edit', compact('beeritem', 'type', 'tags', 'tagIds', 'categories', 'collections', 'breweries'));
     }
 
 
@@ -558,6 +642,45 @@ class BeeritemController extends Controller
                 dd($e);
             }
         }
+
+    }
+
+    public function displayGallery(Request $request)
+    {
+        if ($request->has('item_type') && count($request->item_type)) {
+            try {
+                $type = ucfirst($request->item_type);
+
+
+
+
+                $media = Media::where('collection_name', 'images_' . strtolower($type) )->paginate(5);
+                $media->appends($request->all());
+
+
+                return view('backend.beeritems.gallery', compact('type', 'media'));
+            }
+            catch (\Kyslik\ColumnSortable\Exceptions\ColumnSortableException $e) {
+                dd($e);
+            }
+        }
+        else {
+            try {
+                $type = ucfirst('beeritems');
+
+
+                $media = Media::paginate(5);
+                $media->appends($request->all());
+
+                return view('backend.beeritems.gallery', compact('type', 'media'));
+            }
+            catch (\Kyslik\ColumnSortable\Exceptions\ColumnSortableException $e) {
+                dd($e);
+            }
+        }
+
+
+
 
     }
 

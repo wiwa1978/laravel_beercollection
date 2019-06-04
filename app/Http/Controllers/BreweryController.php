@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Brewery;
 use App\Category;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -184,5 +185,27 @@ class BreweryController extends Controller
 
     }
 
+
+        public function getCountryList()
+        {
+            $countries = DB::table("countries")->pluck("country_name","id");
+            return view('backend.breweries.drop',compact('countries'));
+        }
+
+        public function getRegionList(Request $request)
+        {
+            $states = DB::table("regions")
+            ->where("country_id",$request->country_id)
+            ->pluck("region_name","id");
+            return response()->json($states);
+        }
+
+        public function getCityList(Request $request)
+        {
+            $cities = DB::table("cities")
+            ->where("region_id",$request->region_id)
+            ->pluck("city_name","id");
+            return response()->json($cities);
+        }
 
 }

@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css">
-
+<link rel="stylesheet" href="../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../css/owl.theme.default.min.css">
 @endsection
 
 
@@ -60,13 +61,7 @@
 
                         <div class="form-group">
                             <label class="form-label" for="amount_beeritems">Amount of beeritems:</label>
-                            <select class="form-control" name="amount_beeritems">
-                                <option value="1" {{($beeritem->item_amount == '1') ? 'selected' : ''}}>One</option>
-                                <option value="2" {{($beeritem->item_amount == '2') ? 'selected' : ''}}>Two</option>
-                                <option value="3" {{($beeritem->item_amount == '3') ? 'selected' : ''}}>Three</option>
-                                <option value="4" {{($beeritem->item_amount == '4') ? 'selected' : ''}}>Four</option>
-                                <option value="5" {{($beeritem->item_amount == '5') ? 'selected' : ''}}>Five</option>
-                            </select>
+                            <input id="amount_beeritems" type="text" class="form-control" readonly name="amount_beeritems" value="{{ $beeritem->item_amount }}">
                         </div>
 
                         <div class="form-group">
@@ -97,44 +92,37 @@
 
                     <div class="card-body">
 
-
                         <div class="form-group">
-                        <label class="form-label" for="collection">Collection:</label>
-                            <select class="form-control m-bot15" name="collection_id">
-                                @foreach($collections as $collection)
-                                    <option value="{{$collection->id}}" {{ ($beeritem->collection_id==$collection->id)?'selected':'' }}>{{$collection->collection_name}}</option>
-                                @endForeach
-                            </select>
+                            <label class="form-label" for="collection_id">Collection:</label>
+                            <input id="collection_id" type="text" class="form-control" readonly name="collection_id" value="{{ $collection->collection_name }}">
                         </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="brewery">Brewery:</label>
-                            <select class="form-control" name="brewery_id" >
-                                @foreach($breweries as $brewery)
-                                    <option value="{{ $brewery->id }}" {{ ($beeritem->brewery_id==$brewery->id)?'selected':'' }}>{{ $brewery->brewery_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+
 
                         <div class="form-group">
-                            <label class="form-label" for="tags">Category:</label>
-                            <select class="form-control" name="category_id" >
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" {{ ($beeritem->category_id==$category->id)?'selected':'' }}>{{ $category->category_name }}</option>
-                                @endforeach
-                            </select>
+                            <label class="form-label" for="brewery_id">Brewery:</label>
+                            <input id="brewery_id" type="text" class="form-control" readonly name="brewery_id" value="{{ $brewery->brewery_name }}">
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="form-label" for="category_id">Category:</label>
+                            <input id="category_id" type="text" class="form-control" readonly name="category_id" value="{{ $category->category_name }}">
                         </div>
 
                         <div class="form-group">
                             <label class="form-label" for="tags">Tags:</label>
-                            <select class="form-control js-example-basic-multiple" name="beeritem_tags[]" multiple="multiple">
-                                @foreach($tags as $tag)
-                                    <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
-                                @endforeach
-                            </select>
+                            <div>
+                                @if(!$beeritem->tags->isEmpty() || !$beeritem->tags->count() == 0)
+                                    @foreach($beeritem->tags as $tag)
+                                        <span class="tag tag-green">{{ $tag->tag_name }}</span>
+                                    @endforeach
+                                @else
+                                    <span class="tag tag-red">No tags </span>
+                                @endif
+                            </div>
                         </div>
-
-
 
                     </div>
                 </div>
@@ -334,25 +322,55 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header text-orange"><b>Photo Material</b></div>
-                    <div class="card-body">
-                        <div class="row gutters-sm">
-                            @foreach($beeritemImages as $image)
-                                <div class="col-sm-6">
-                                <label class="imagecheck mb-6">
-                                    <figure class="imagecheck-figure">
-                                    <img src="{{ asset('storage/'. $image->id.'/'.$image->file_name) }}" >
-                                    </figure>
-                                </label>
-                                </div>
-                            @endforeach
 
-                        </div>
+
+                    <div class="card-body">
+
+                            <div id="owl-demo" class="owl-carousel owl-theme">
+                            @foreach($beeritemImages as $image)
+
+                                    <div class="item">
+                                        <a href="{{ asset('storage/'. $image->id.'/'.$image->file_name) }}">
+
+                                        <img src="{{ asset('storage/'. $image->id.'/'.$image->file_name) }}" >
+                                        </a>
+                                    </div>
+
+
+                            @endforeach
+                            </div>
+
+
                     </div>
             </div>
+
         </div>
     </div>
 
 </div>
 
 
+@endsection
+
+@section('scripts')
+
+
+    <script>
+        $(document).ready(function() {
+
+            $("#owl-demo").owlCarousel({
+                loop:true,
+                autoplay:true,
+                autoplayTimeout:3000,
+                autoplayHoverPause:true,
+
+                autoWidth: false,
+                items : 4,
+                itemsDesktop : [1199,3],
+                itemsDesktopSmall : [979,3]
+
+            });
+
+        });
+    </script>
 @endsection

@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
 
 @endsection
 
@@ -14,7 +15,7 @@
 <div class="container">
     <div class="row row-cards">
         <div class="col-12  ">
-            <form method="post" action={{ url('/new_ticket') }} enctype="multipart/form-data">
+            <form method="post" action={{ route('tickets.store') }} enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-header">
@@ -79,7 +80,15 @@
 
 
 
+<div class="form-group">
+			<label>Tags:</span>
+			<br/>
+			<input data-role="tagsinput" type="text" name="tags" >
+			@if ($errors->has('tags'))
+                <span class="text-danger">{{ $errors->first('tags') }}</span>
 
+            @endif
+		</div>
 
 
 
@@ -134,6 +143,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
+
+
+
 
     <script>
             $(document).ready(function() {

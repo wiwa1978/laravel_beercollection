@@ -60,6 +60,7 @@
                                     <td>Ticket Priority</td>
                                     <td>Ticket Status</td>
                                     <td>Last Updated</td>
+                                    <td>Tags</td>
                                     <td align="center">Action</td>
                                 </tr>
                             </thead>
@@ -88,14 +89,21 @@
                                     @endif
                                     </td>
                                     <td>{{ $ticket->updated_at }}</td>
+                                    <td>
+
+                                        @foreach($ticket->tags as $tag)
+                                            <span class="tag tag-green">{{ $tag->name }}</span>
+
+                                        @endforeach
+                                    </td>
                                     <td align="center">
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">
                                                 <i class="fe fe-calendar mr-2"></i>Actions
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item text-orange" href="">Edit</a>
-                                                <a class="dropdown-item text-blue" href="">Show</a>
+                                                <a class="dropdown-item text-orange" href="{{ route('tickets.edit',$ticket->id)}}">Edit</a>
+                                                <a class="dropdown-item text-blue" href="{{ route('tickets.show',$ticket->id)}}">Show</a>
                                                  <form action="" method="post">
                                                     @csrf
                                                     @method('DELETE')

@@ -100,8 +100,9 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Overview</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
 
-                                        <a href="{{ route('beeritems.index') }}" class="dropdown-item ">All items</a>
-                                        <a href="{{ route('beeritems.grid') }}" class="dropdown-item ">All items: grid</a>
+                                        <a href="{{ route('beeritems.index') }}" class="dropdown-item ">All items: table view</a>
+                                        <a href="{{ route('beeritems.grid') }}" class="dropdown-item ">All items: grid view</a>
+                                        <a href="{{ route('beeritems.gallery') }}" class="dropdown-item ">All items: all photos</a>
                                         <a href="{{ route('beeritems.spares') }}" class="dropdown-item ">All items: spare</a>
                                         <a href="{{ route('beeritems.wishlist') }}" class="dropdown-item ">All items: wishlist</a>
                                     </div>
@@ -112,8 +113,9 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Beerglasses</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
                                     <a href="{{ route('beeritems.create',['item_type' => 'beerglasses']) }}" class="dropdown-item ">Create Beerglass</a>
-                                    <a href="{{ route('beeritems.index',['item_type' => 'beerglasses']) }}" class="dropdown-item ">Beerglasses: all</a>
-                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerglasses']) }}" class="dropdown-item ">Beerglasses: grid</a>
+                                    <a href="{{ route('beeritems.index',['item_type' => 'beerglasses']) }}" class="dropdown-item ">Beerglasses: table view</a>
+                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerglasses']) }}" class="dropdown-item ">Beerglasses: grid view</a>
+                                    <a href="{{ route('beeritems.gallery',['item_type' => 'beerglasses']) }}" class="dropdown-item ">Beerglasses: all photos</a>
                                     <a href="{{ route('beeritems.spares', ['item_type' => 'beerglasses']) }}" class="dropdown-item ">Beerglasses: spare</a>
                                     <a href="{{ route('beeritems.wishlist', ['item_type' => 'beerglasses']) }}" class="dropdown-item ">Beerglasses: wishlist</a>
                                     </div>
@@ -125,8 +127,8 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Beerlabels</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
                                     <a href="{{ route('beeritems.create',['item_type' => 'beerlabels']) }}" class="dropdown-item ">Create Beerlabel</a>
-                                    <a href="{{ route('beeritems.index',['item_type' => 'beerlabels']) }}" class="dropdown-item ">Beerlabels: all</a>
-                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerlabels']) }}" class="dropdown-item ">Beerlabels: grid</a>
+                                    <a href="{{ route('beeritems.index',['item_type' => 'beerlabels']) }}" class="dropdown-item ">Beerlabels: table view</a>
+                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerlabels']) }}" class="dropdown-item ">Beerlabels: grid view</a>
                                     <a href="{{ route('beeritems.spares', ['item_type' => 'beerlabels']) }}" class="dropdown-item ">Beerlabels: spare</a>
                                     <a href="{{ route('beeritems.wishlist', ['item_type' => 'beerlabels']) }}" class="dropdown-item ">Beerlabels: wishlist</a>
                                     </div>
@@ -138,10 +140,10 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Beerashtrays</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
                                     <a href="{{ route('beeritems.create',['item_type' => 'beerashtrays']) }}" class="dropdown-item ">Create Beerashtray</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerashtrays' ]) }}" class="dropdown-item ">Beerashtrays: all</a>
-                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerashtrays']) }}" class="dropdown-item ">Beerashtrays: grid</a>
+                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerashtrays' ]) }}" class="dropdown-item ">Beerashtrays: table view</a>
+                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerashtrays']) }}" class="dropdown-item ">Beerashtrays: grid view</a>
                                     <a href="{{ route('beeritems.spares', ['item_type' => 'beerashtrays' ]) }}" class="dropdown-item ">Beerashtrays: spare</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerashtrays' ]) }}" class="dropdown-item ">Beerashtrays: wishlist</a>
+                                    <a href="{{ route('beeritems.wishlist', ['item_type' => 'beerashtrays' ]) }}" class="dropdown-item ">Beerashtrays: wishlist</a>
                                     </div>
                                 </li>
                                 @endcan
@@ -151,10 +153,10 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Beercontainers</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
                                     <a href="{{ route('beeritems.create',['item_type' => 'beercontainers']) }}" class="dropdown-item ">Create Beercontainer</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beercontainers' ]) }}" class="dropdown-item ">Beercontainers: all</a>
-                                    <a href="{{ route('beeritems.grid',['item_type' => 'beercontainers']) }}" class="dropdown-item ">Beercontainers: grid</a>
+                                    <a href="{{ route('beeritems.index', ['item_type' => 'beercontainers' ]) }}" class="dropdown-item ">Beercontainers: table view</a>
+                                    <a href="{{ route('beeritems.grid',['item_type' => 'beercontainers']) }}" class="dropdown-item ">Beercontainers: grid view</a>
                                     <a href="{{ route('beeritems.spares', ['item_type' => 'beercontainers' ]) }}" class="dropdown-item ">Beercontainers: spare</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beercontainers' ]) }}" class="dropdown-item ">Beercontainers: wishlist</a>
+                                    <a href="{{ route('beeritems.wishlist', ['item_type' => 'beercontainers' ]) }}" class="dropdown-item ">Beercontainers: wishlist</a>
                                     </div>
                                 </li>
                                 @endcan
@@ -164,10 +166,10 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Beerbottles</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
                                     <a href="{{ route('beeritems.create',['item_type' => 'beerbottles']) }}" class="dropdown-item ">Create Beerbottle</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerbottles' ]) }}" class="dropdown-item ">Beerbottles: all</a>
-                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerbottles']) }}" class="dropdown-item ">Beerbottles: grid</a>
+                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerbottles' ]) }}" class="dropdown-item ">Beerbottles: table view</a>
+                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerbottles']) }}" class="dropdown-item ">Beerbottles: grid view</a>
                                     <a href="{{ route('beeritems.spares', ['item_type' => 'beerbottles' ]) }}" class="dropdown-item ">Beerbottles: spare</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerbottles' ]) }}" class="dropdown-item ">Beerbottles: wishlist</a>
+                                    <a href="{{ route('beeritems.wishlist', ['item_type' => 'beerbottles' ]) }}" class="dropdown-item ">Beerbottles: wishlist</a>
                                     </div>
                                 </li>
                                 @endcan
@@ -177,10 +179,11 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Beerplateaus</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
                                     <a href="{{ route('beeritems.create',['item_type' => 'beerplateaus']) }}" class="dropdown-item ">Create Beerplateau</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerplateaus' ]) }}" class="dropdown-item ">Beerplateaus: all</a>
-                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerplateaus']) }}" class="dropdown-item ">Beerplateaus: grid</a>
+                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerplateaus' ]) }}" class="dropdown-item ">Beerplateaus: table view</a>
+                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerplateaus']) }}" class="dropdown-item ">Beerplateaus: grid view</a>
+                                    <a href="{{ route('beeritems.gallery',['item_type' => 'beerplateaus']) }}" class="dropdown-item ">Beerplateaus: all photos</a>
                                     <a href="{{ route('beeritems.spares', ['item_type' => 'beerplateaus' ]) }}" class="dropdown-item ">Beerplateaus: spare</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerplateaus' ]) }}" class="dropdown-item ">Beerplateaus: wishlist</a>
+                                    <a href="{{ route('beeritems.wishlist', ['item_type' => 'beerplateaus' ]) }}" class="dropdown-item ">Beerplateaus: wishlist</a>
                                     </div>
                                 </li>
                                 @endcan
@@ -190,10 +193,10 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Beeradvertisements</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
                                     <a href="{{ route('beeritems.create',['item_type' => 'beeradvertisements']) }}" class="dropdown-item ">Create Beeradvertisements</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beeradvertisements' ]) }}" class="dropdown-item ">Beeradvertisements: all</a>
-                                    <a href="{{ route('beeritems.grid',['item_type' => 'beeradvertisements']) }}" class="dropdown-item ">Beeradvertisements: grid</a>
+                                    <a href="{{ route('beeritems.index', ['item_type' => 'beeradvertisements' ]) }}" class="dropdown-item ">Beeradvertisements: table view</a>
+                                    <a href="{{ route('beeritems.grid',['item_type' => 'beeradvertisements']) }}" class="dropdown-item ">Beeradvertisements: grid view</a>
                                     <a href="{{ route('beeritems.spares', ['item_type' => 'beeradvertisements' ]) }}" class="dropdown-item ">Beeradvertisements: spare</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beeradvertisements' ]) }}" class="dropdown-item ">Beeradvertisements: wishlist</a>
+                                    <a href="{{ route('beeritems.wishlist', ['item_type' => 'beeradvertisements' ]) }}" class="dropdown-item ">Beeradvertisements: wishlist</a>
                                     </div>
                                 </li>
                                 @endcan
@@ -203,10 +206,10 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Beercoasters</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
                                     <a href="{{ route('beeritems.create',['item_type' => 'beercoasters']) }}" class="dropdown-item ">Create Beercoaster</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beercoasters' ]) }}" class="dropdown-item ">Beercoasters: all</a>
-                                    <a href="{{ route('beeritems.grid',['item_type' => 'beercoasters']) }}" class="dropdown-item ">Beercoasters: grid</a>
+                                    <a href="{{ route('beeritems.index', ['item_type' => 'beercoasters' ]) }}" class="dropdown-item ">Beercoasters: table view</a>
+                                    <a href="{{ route('beeritems.grid',['item_type' => 'beercoasters']) }}" class="dropdown-item ">Beercoasters: grid view</a>
                                     <a href="{{ route('beeritems.spares', ['item_type' => 'beercoasters' ]) }}" class="dropdown-item ">Beercoasters: spare</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beercoasters' ]) }}" class="dropdown-item ">Beercoasters: wishlist</a>
+                                    <a href="{{ route('beeritems.wishlist', ['item_type' => 'beercoasters' ]) }}" class="dropdown-item ">Beercoasters: wishlist</a>
                                     </div>
                                 </li>
                                 @endcan
@@ -216,10 +219,10 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Beerstonejugs</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
                                     <a href="{{ route('beeritems.create',['item_type' => 'beerstonejugs']) }}" class="dropdown-item ">Create Beerstonejugs</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerstonejugs' ]) }}" class="dropdown-item ">Beerstonejugs: all</a>
-                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerstonejugs']) }}" class="dropdown-item ">Beerstonejugs: grid</a>
+                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerstonejugs' ]) }}" class="dropdown-item ">Beerstonejugs: table view</a>
+                                    <a href="{{ route('beeritems.grid',['item_type' => 'beerstonejugs']) }}" class="dropdown-item ">Beerstonejugs: grid view</a>
                                     <a href="{{ route('beeritems.spares', ['item_type' => 'beerstonejugs' ]) }}" class="dropdown-item ">Beerstonejugs: spare</a>
-                                    <a href="{{ route('beeritems.index', ['item_type' => 'beerstonejugs' ]) }}" class="dropdown-item ">Beerstonejugs: wishlist</a>
+                                    <a href="{{ route('beeritems.wishlist', ['item_type' => 'beerstonejugs' ]) }}" class="dropdown-item ">Beerstonejugs: wishlist</a>
                                     </div>
                                 </li>
                                 @endcan
@@ -273,6 +276,7 @@
         </main>
     </div>
 </body>
+ <script src="../js/owl.carousel.min.js"></script>
     <!-- Scripts -->
     @yield('scripts')
 </html>

@@ -16,7 +16,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::where('user_id', Auth::user()->id)->paginate(10);
+        $tickets = Ticket::with('tagged')->where('user_id', Auth::user()->id)->paginate(10);
         $ticket_types = TicketType::all();
 
         return view('backend.tickets.index', compact('tickets', 'ticket_types'));
@@ -30,6 +30,7 @@ class TicketController extends Controller
     public function create()
     {
         $ticket_types = TicketType::all();
+
 
         return view('backend.tickets.create', compact('ticket_types'));
     }
@@ -51,6 +52,8 @@ class TicketController extends Controller
             'ticket_description'    =>      'required'
         ]);
 
+        $tags = explode(",", $request->tags);
+
         $ticket = new Ticket([
             'ticket_title'          =>      $request->input('ticket_title'),
             'user_id'               =>      Auth::user()->id,
@@ -62,6 +65,7 @@ class TicketController extends Controller
         ]);
 
         $ticket->save();
+        $ticket->tag($tags);
 
         //$mailer->sendTicketInformation(Auth::user(), $ticket);
 
@@ -95,7 +99,8 @@ class TicketController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-        //
+        $ticket_types = TicketType::all();
+        return view('backend.tickets.edit', compact('ticket', 'ticket_types'));
     }
 
     /**

@@ -19,5 +19,4 @@ class Brewery extends Model
     {
         return $this->hasMany('App\Beeritem');
     }
-
 }

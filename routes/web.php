@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('beeritems/importexport','BeerItemController@importexport')->name('beeritems.importexport');
     //
     Route::get('beeritems/grid','BeerItemController@displayGrid')->name('beeritems.grid');
+    Route::get('beeritems/gallery','BeerItemController@displayGallery')->name('beeritems.gallery');
+
     Route::get('beeritems/spares','BeerItemController@spares')->name('beeritems.spares');
     Route::get('beeritems/wishlist','BeerItemController@wishlist')->name('beeritems.wishlist');
 
@@ -80,6 +82,11 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     //Route::post('new_ticket', 'TicketController@store')->name('tickets.store');
     //Route::get('my_tickets', 'TicketController@index')->name('tickets.index');
     //Route::get('tickets/{ticket}', 'TicketController@show')->name('tickets.show');
+
+
+    Route::get('dropdownlist','BreweryController@getCountryList');
+    Route::get('get-region-list','BreweryController@getRegionList');
+    Route::get('get-city-list','BreweryController@getCityList');
 
 
 });

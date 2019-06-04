@@ -7,10 +7,13 @@ use Kyslik\ColumnSortable\Sortable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+
+
 class Beeritem extends Model implements HasMedia
 {
     use Sortable;
     use HasMediaTrait;
+
 
     protected $fillable = [
         'user_id',

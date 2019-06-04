@@ -19,7 +19,7 @@
             @csrf
             <div class="card">
                 <div class="card-header">
-                    <h3 class="h3 m-0 text-gray">Updating {{ $type }}</h3>
+                    <h3 class="h3 m-0 text-gray">Edit '{{ $beeritem->item_name }}'</h3>
                     <div class="card-options">
                         <button type="submit" id="button_save" class="btn btn-success">Save changes</button>
                         <a href="{{ route('beeritems.index') }}" class="btn btn-danger btn-close ml-2">Cancel</a>
@@ -118,7 +118,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="tags">Category:</label>
+                            <label class="form-label" for="category">Category:</label>
                             <select class="form-control" name="category_id" >
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ ($beeritem->category_id==$category->id)?'selected':'' }}>{{ $category->category_name }}</option>
@@ -126,16 +126,19 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="tags">Tags:</label>
-                            <select class="form-control js-example-basic-multiple" name="beeritem_tags[]" multiple="multiple">
+                       <div class="form-group">
+                            <label class="form-label" for="tags">Tags:  (*)</label>
+                            <select id="lang" class="form-control tag-multiple" name="beeritem_tags[]" multiple="multiple">
                                 @foreach($tags as $tag)
-                                    <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+                                    @if(in_array($tag->id, $tagIds))
+                                        <option value="{{$tag->id}}" selected>{{$tag->tag_name}}</option>
+                                    @else
+                                        <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
+
                         </div>
-
-
 
                     </div>
                 </div>
@@ -356,11 +359,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 
-
-
     <script>
-            $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
+        $(document).ready(function() {
+            $('.tag-multiple').select2({
+
+            }
+
+
+            );
+
         });
     </script>
 

@@ -21,7 +21,8 @@
                     <h3 class="h3 m-0 text-gray">Adding {{ $type }}</h3>
                     <div class="card-options">
                         <button type="submit" id="button" class="btn btn-success">Save changes</button>
-                        <a href="{{ route('beeritems.create') }}" class="btn btn-danger btn-close ml-2">Cancel</a>
+                        <a href="{{ route('beeritems.create', ['item_type' => $type ]) }}" class="btn btn-danger btn-close ml-2">Cancel</a>
+
                     </div>
                 </div>
             </div>
@@ -72,11 +73,11 @@
                         <div class="form-group">
                             <label class="form-label" for="amount_beeritems">Amount of {{ str_plural(strtolower($type)) }}: (*)</label>
                             <select class="form-control" name="amount_beeritems">
-                                <option value="1" {{ old("amount_beeritems") == 1 ? "selected" : "" }}>One</option>
-                                <option value="2" {{ old("amount_beeritems") == 2 ? "selected" : "" }}>Two</option>
-                                <option value="3" {{ old("amount_beeritems") == 3 ? "selected" : "" }}>Three</option>
-                                <option value="4" {{ old("amount_beeritems") == 4 ? "selected" : "" }}>Four</option>
-                                <option value="5" {{ old("amount_beeritems") == 5 ? "selected" : "" }}>Five</option>
+                                <option value="1" {{ old("amount_beeritems") == 1 ? "selected" : "" }}>1</option>
+                                <option value="2" {{ old("amount_beeritems") == 2 ? "selected" : "" }}>2</option>
+                                <option value="3" {{ old("amount_beeritems") == 3 ? "selected" : "" }}>3</option>
+                                <option value="4" {{ old("amount_beeritems") == 4 ? "selected" : "" }}>4</option>
+                                <option value="5" {{ old("amount_beeritems") == 5 ? "selected" : "" }}>5</option>
                             </select>
                         </div>
 
@@ -128,7 +129,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="tags">Category: (*)</label>
+                            <label class="form-label" for="category">Category: (*)</label>
                             <select class="form-control" name="category_id" >
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ old("category_id") == $category->id ? "selected" : "" }}>{{ $category->category_name }}</option>
@@ -138,7 +139,7 @@
 
                         <div class="form-group">
                             <label class="form-label" for="tags">Tags:  (*)</label>
-                            <select class="form-control js-example-basic-multiple" name="beeritem_tags[]" multiple="multiple">
+                            <select class="form-control tag-multiple" name="beeritem_tags[]" multiple="multiple">
                                 @foreach($tags as $tag)
                                     <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
                                 @endforeach
@@ -374,8 +375,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
     <script>
-            $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
+        $(document).ready(function() {
+            $('.tag-multiple').select2({
+                placeholder: "Add some tags",
+            });
         });
     </script>
 

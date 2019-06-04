@@ -61,8 +61,6 @@
                                 <a href="{{ route('breweries.create') }}" class="btn btn-danger btn-close">Cancel</a>
                             </div>
 
-
-
                         </form>
 
                     </div>

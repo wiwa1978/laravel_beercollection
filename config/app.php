@@ -166,6 +166,8 @@ return [
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
+        \Conner\Tagging\Providers\TaggingServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -184,7 +186,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | This array of class aliases will be registered when this application
-    | is started. However, feel free to register as many as you wish as
+    | is started. How   r, feel free to register as many as you wish as
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
