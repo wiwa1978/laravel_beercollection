@@ -57,6 +57,9 @@
                     <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#test">Test</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#register">Register</a>
                 </li>
                 <li class="nav-item">
@@ -227,6 +230,27 @@
     </div>
   </section>
 
+
+    <section id="test" class="signup-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+
+          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+          <h2 class="text-white mb-5">Test Section!</h2>
+
+          <form class="form-inline d-flex">
+            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
+            <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
     <section id="register" class="register-section">
     <div class="container">
       <div class="row">
@@ -327,9 +351,15 @@
             <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
             <h2 class="text-white mb-5">Login to your account</h2>
 
+
+
+
             <form class="form-inline d-flex flex-column " action="{{ route('login') }}" method="post" novalidate>
             @csrf
                 <div class="p-3">
+
+
+
                 <input
                     type="email"
                     class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
@@ -375,6 +405,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- Footer -->
   <footer class="bg-black small text-center text-white-50">

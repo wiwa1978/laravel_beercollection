@@ -413,6 +413,7 @@ class BeeritemController extends Controller
         $tags_user =  $beeritem->tags()->get(); //contains all the tags the user has selected
         //the id's for each tag the user selected are stored in an array 'tagIds' so we can use it in the edit
         //view to loop over it
+        $tagIds = [];
         foreach($tags_user as $tag_user)
         {
             $tagIds[] = $tag_user->id;
