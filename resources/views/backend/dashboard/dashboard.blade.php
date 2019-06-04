@@ -57,6 +57,7 @@
     </div>
 
 
+    @can('manage-beerglasses')
     <div class="col-md-3">
         <div class="card">
             <div class="card-status bg-orange"></div>
@@ -69,7 +70,9 @@
             </div>
         </div>
     </div>
+    @endcan
 
+    @can('manage-beersashtrays')
      <div class="col-md-3">
         <div class="card">
             <div class="card-status bg-orange"></div>
@@ -82,7 +85,9 @@
             </div>
         </div>
     </div>
+    @endcan
 
+    @can('manage-beercontainers')
      <div class="col-md-3">
         <div class="card">
             <div class="card-status bg-orange"></div>
@@ -95,8 +100,9 @@
             </div>
         </div>
     </div>
+    @endcan
 
-
+    @can('manage-beerslabels')
      <div class="col-md-3">
         <div class="card">
             <div class="card-status bg-orange"></div>
@@ -109,7 +115,9 @@
             </div>
         </div>
     </div>
+    @endcan
 
+    @can('manage-beerbottles')
     <div class="col-md-3">
         <div class="card">
             <div class="card-status bg-orange"></div>
@@ -122,20 +130,24 @@
             </div>
         </div>
     </div>
+    @endcan
 
+    @can('manage-beerplateaus')
     <div class="col-md-3">
         <div class="card">
             <div class="card-status bg-orange"></div>
             <div class="card-header">
-                <h3 class="card-title">Beerplatteaus</h3>
+                <h3 class="card-title">Beerplateaus</h3>
             </div>
             <div class="card-body text-center">
-                <div class="display-3 my-4"><a href="{{ route('beeritems.index',['item_type' => 'beerplatteaus']) }}">{{ $beerplatteaus_count }}</a></div>
-               <div class="mt-6">beerplatteaus</div>
+                <div class="display-3 my-4"><a href="{{ route('beeritems.index',['item_type' => 'beerplateaus']) }}">{{ $beerplateaus_count }}</a></div>
+               <div class="mt-6">beerplateaus</div>
             </div>
         </div>
     </div>
+    @endcan
 
+    @can('manage-beeradvertisements')
    <div class="col-md-3">
         <div class="card">
             <div class="card-status bg-orange"></div>
@@ -148,6 +160,9 @@
             </div>
         </div>
     </div>
+    @endcan
+
+    @can('manage-beercoasters')
 
     <div class="col-md-3">
         <div class="card">
@@ -161,8 +176,9 @@
             </div>
         </div>
     </div>
+    @endcan
 
-
+    @can('manage-beerstonejugs')
     <div class="col-md-3">
         <div class="card">
             <div class="card-status bg-orange"></div>
@@ -175,6 +191,7 @@
             </div>
         </div>
     </div>
+    @endcan
 
 </div>
 

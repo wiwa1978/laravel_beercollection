@@ -59,7 +59,7 @@
                         </form>
                     </div>
                 <div class="row align-items-center">
-                    @if(!$beeritems->isEmpty() || !$beeritems->count() == 0)
+                    @if(!$beeritems->isEmpty() || !count($beeritems) == 0)
                     <div class="col-md-12">
                     <div class="table-responsive-xl">
                         <table class="table table-bordered ">
@@ -85,7 +85,7 @@
                                     <td>{{$beeritem->collection->collection_name}}</td>
                                     <td align="center">{{$beeritem->item_amount}}</td>
                                     <td>
-                                    @if(!$beeritem->tags->isEmpty() || !$beeritem->tags->count() == 0)
+                                    @if(!$beeritem->tags->isEmpty() || !count($beeritem->tags) == 0)
                                         @foreach($beeritem->tags as $tag)
                                             <a href="{{ route('tags.show', $tag->id)}}" class="tag tag-green">{{ $tag->tag_name }}</span>
                                         @endforeach

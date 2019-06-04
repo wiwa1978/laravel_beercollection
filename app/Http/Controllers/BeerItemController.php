@@ -72,6 +72,13 @@ class BeeritemController extends Controller
 
     }
 
+
+    public function generateQR(Request $request)
+    {
+        return view('backend.beeritems.qr_code');
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -402,6 +409,7 @@ class BeeritemController extends Controller
     {
         $categories = Category::where('user_id', Auth::id())->get();
         $tags =  Tag::where('user_id', Auth::id())->get(); //contains all the tags
+
         $tags_user =  $beeritem->tags()->get(); //contains all the tags the user has selected
         //the id's for each tag the user selected are stored in an array 'tagIds' so we can use it in the edit
         //view to loop over it

@@ -15,7 +15,7 @@
                     <div class="card-header">Brewery Detail</div>
                     <div class="card-body">
 
-                                    <div class="form-group">
+            <div class="form-group">
                 <select id="country" name="category_id" class="form-control" style="width:350px" >
                 <option value="" selected disabled>Select</option>
                   @foreach($countries as $key => $country)

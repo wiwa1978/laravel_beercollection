@@ -32,7 +32,7 @@ class DashboardController extends Controller
         $beercontainers_count = Beeritem::where('user_id', Auth::id())->where('item_type', '=', 'beercontainers')->count();
         $beerlabels_count = Beeritem::where('user_id', Auth::id())->where('item_type', '=', 'beerlabels')->count();
         $beerbottles_count = Beeritem::where('user_id', Auth::id())->where('item_type', '=', 'beerbottles')->count();
-        $beerplatteaus_count = Beeritem::where('user_id', Auth::id())->where('item_type', '=', 'beerplateaus')->count();
+        $beerplateaus_count = Beeritem::where('user_id', Auth::id())->where('item_type', '=', 'beerplateaus')->count();
         $beeradvertisements_count = Beeritem::where('user_id', Auth::id())->where('item_type', '=', 'beeradvertisements')->count();
         $beercoasters_count = Beeritem::where('user_id', Auth::id())->where('item_type', '=', 'beercoasters')->count();
         $beerstonejugs_count = Beeritem::where('user_id', Auth::id())->where('item_type', '=', 'beerstonejugs')->count();
@@ -48,7 +48,7 @@ class DashboardController extends Controller
             'beercontainers_count',
             'beerlabels_count',
             'beerbottles_count',
-            'beerplatteaus_count',
+            'beerplateaus_count',
             'beeradvertisements_count',
             'beercoasters_count',
             'beerstonejugs_count',

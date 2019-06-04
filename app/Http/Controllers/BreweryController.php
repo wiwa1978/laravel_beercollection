@@ -32,7 +32,32 @@ class BreweryController extends Controller
      */
     public function create()
     {
-        return view('backend.breweries.create');
+        $countries = DB::table("countries")->pluck("country_name","id");
+        return view('backend.breweries.create',compact('countries'));
+
+    }
+
+
+    public function getCountryList()
+    {
+        $countries = DB::table("countries")->pluck("country_name","id");
+        return view('backend.breweries.create',compact('countries'));
+    }
+
+    public function getRegionList(Request $request)
+    {
+        $states = DB::table("regions")
+            ->where("country_id",$request->country_id)
+            ->pluck("region_name","id");
+        return response()->json($states);
+    }
+
+    public function getCityList(Request $request)
+    {
+        $cities = DB::table("cities")
+            ->where("region_id",$request->region_id)
+            ->pluck("city_name","id");
+        return response()->json($cities);
     }
 
     /**
@@ -186,26 +211,6 @@ class BreweryController extends Controller
     }
 
 
-        public function getCountryList()
-        {
-            $countries = DB::table("countries")->pluck("country_name","id");
-            return view('backend.breweries.drop',compact('countries'));
-        }
 
-        public function getRegionList(Request $request)
-        {
-            $states = DB::table("regions")
-            ->where("country_id",$request->country_id)
-            ->pluck("region_name","id");
-            return response()->json($states);
-        }
-
-        public function getCityList(Request $request)
-        {
-            $cities = DB::table("cities")
-            ->where("region_id",$request->region_id)
-            ->pluck("city_name","id");
-            return response()->json($cities);
-        }
 
 }

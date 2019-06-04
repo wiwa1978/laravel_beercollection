@@ -25,9 +25,9 @@ class storeBrewery extends FormRequest
     {
         return [
             'brewery_name'=>'required|min:3|max:255',
-            'brewery_zipcode'=>'required|min:3|max:255',
-            'brewery_town'=>'required|min:3|max:255',
-            'brewery_country'=>'required|min:3|max:255',
+            'brewery_zipcode'=>'required|max:255',
+            'brewery_town'=>'required|max:255',
+            'brewery_country'=>'required|max:255',
         ];
     }
 

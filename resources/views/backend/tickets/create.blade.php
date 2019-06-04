@@ -160,68 +160,6 @@
 
 
 
-    <script>
-        button.disabled = false;
-        //document.getElementById("test").style.display = "none";
-        var uploadedDocumentMap = {};
-        Dropzone.options.documentDropzone = {
-            url: '{{ route('image.store') }}',
-            maxFiles: 8,
-            maxFilesize: 10,
-            addRemoveLinks: true,
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            uploadMultiple: false,
-            parallelUploads: 4,
-            acceptedFiles: '.jpeg,.jpg,.png,.gif',
-            timeout: 5000,
-
-            success: function (file, response) {
-                console.log(response);
-                button.disabled = false;
-                $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
-                uploadedDocumentMap[file.name] = response.name
-                console.log(uploadedDocumentMap[file.name] );
-            },
-            removedfile: function (file) {
-                file.previewElement.remove()
-                var name = ''
-                if (typeof file.file_name !== 'undefined') {
-                    name = file.file_name
-                } else {
-                    name = uploadedDocumentMap[file.name]
-                }
-                $('form').find('input[name="document[]"][value="' + name + '"]').remove()
-            },
-            init: function () {
-                @if(isset($beeritem) && $beeritem->document)
-                    var files =
-                    {!! json_encode($beeritem->document) !!}
-                    for (var i in files) {
-                    var file = files[i]
-                    this.options.addedfile.call(this, file)
-                    file.previewElement.classList.add('dz-complete')
-                    $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
-                    }
-                @endif
-                }
-            ,
-
-
-
-            error: function(file, response) {
-                //document.getElementById("test").style.display = "block";
-                //document.getElementById("test").innerHTML = response;
-                console.log(response);
-                return false;
-            }
-        };
-
-
-
-    </script>
-
 
 
 @endsection
