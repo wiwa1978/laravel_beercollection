@@ -36,7 +36,7 @@ class BeeritemController extends Controller
         $wishlist = false;
         $search = false;
 
-        if ($request->has('item_type') && count($request->item_type)) {
+        if ($request->has('item_type')) {
             try {
                 $beeritems = Beeritem::where('user_id', Auth::id())
                     ->where('item_type', '=', $request->item_type)
@@ -110,7 +110,7 @@ class BeeritemController extends Controller
         */
 
 
-        if ($request->has('item_type') && count($request->item_type)) {
+        if ($request->has('item_type')) {
             $collections = Collection::where('user_id', Auth::id())
                 ->where('collection_type', '=', $request->item_type)
                 ->orderBy('id','DESC')->get();
@@ -527,7 +527,7 @@ class BeeritemController extends Controller
         $wishlist = false;
         $search = false;
 
-        if ($request->has('item_type') && count($request->item_type)) {
+        if ($request->has('item_type')) {
             try {
                 $beeritems = Beeritem::where('user_id', Auth::id())
                     ->where('item_amount', '>=', '2')
@@ -566,7 +566,7 @@ class BeeritemController extends Controller
         $spare = false;
         $search = false;
 
-        if ($request->has('item_type') && count($request->item_type)) {
+        if ($request->has('item_type')) {
             try {
                 $beeritems = Beeritem::where('user_id', Auth::id())
                     ->where('item_wishlist', true)
@@ -614,7 +614,7 @@ class BeeritemController extends Controller
 
     public function displayGrid(Request $request)
     {
-        if ($request->has('item_type') && count($request->item_type)) {
+        if ($request->has('item_type')) {
             try {
                 $beeritems = Beeritem::where('user_id', Auth::id())
                     ->where('item_type', '=', $request->item_type)
@@ -655,7 +655,7 @@ class BeeritemController extends Controller
 
     public function displayGallery(Request $request)
     {
-        if ($request->has('item_type') && count($request->item_type)) {
+        if ($request->has('item_type')) {
             try {
                 $type = ucfirst($request->item_type);
 
