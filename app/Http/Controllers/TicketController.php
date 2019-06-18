@@ -52,7 +52,7 @@ class TicketController extends Controller
             'ticket_description'    =>      'required'
         ]);
 
-        $tags = explode(",", $request->tags);
+
 
         $ticket = new Ticket([
             'ticket_title'          =>      $request->input('ticket_title'),
@@ -65,7 +65,7 @@ class TicketController extends Controller
         ]);
 
         $ticket->save();
-        $ticket->tag($tags);
+
 
         //$mailer->sendTicketInformation(Auth::user(), $ticket);
 
@@ -85,10 +85,9 @@ class TicketController extends Controller
         //dd($ticket);
         //$ticket_types = TicketType::all();
         $ticket_type = TicketType::where('id', $ticket->type_id)->firstOrFail();
+        $comments = $ticket->comments;
 
-
-
-        return view('backend.tickets.show', compact('ticket', 'ticket_type'));
+        return view('backend.tickets.show', compact('ticket', 'ticket_type', 'comments'));
     }
 
     /**

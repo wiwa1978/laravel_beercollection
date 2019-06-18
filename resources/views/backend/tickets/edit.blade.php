@@ -15,14 +15,15 @@
 <div class="container">
     <div class="row row-cards">
         <div class="col-12  ">
-            <form method="post" action={{ route('tickets.store') }} enctype="multipart/form-data">
-            @csrf
+
             <div class="card">
+                <form action="{{ url('comment') }}" method="POST" class="form">
+                            @csrf
                 <div class="card-header">
                     <h3 class="h3 m-0 text-gray">Edit Ticket '{{ $ticket->id }}' with ID '{{ $ticket->ticket_id }}'</h3>
                     <div class="card-options">
-                        <button type="submit" id="button" class="btn btn-success">Save changes</button>
-                        <a href="{{ route('tickets.create') }}" class="btn btn-danger btn-close ml-2">Cancel</a>
+                        <button type="submit" id="button" class="btn btn-success">Add comment</button>
+                        <a href="{{ route('tickets.index') }}" class="btn btn-danger btn-close ml-2">Cancel</a>
                     </div>
                 </div>
             </div>
@@ -57,20 +58,24 @@
                                 <select id="ticket_type" type="ticket_type" class="form-control" name="ticket_type">
                                     <option value="">Select Type</option>
                                     @foreach ($ticket_types as $ticket_type)
-                                        <option value="{{ $ticket_type->id }}" >{{ $ticket_type->type_name }}</option>
+                                        <option value="{{ $ticket_type->id }}" {{ ($ticket->type_id==$ticket_type->id)?'selected':'' }} >{{ $ticket_type->type_name }}</option>
                                     @endforeach
                                 </select>
 
 
                             </div>
 
+
+
+
+
                             <div class="form-group{{ $errors->has('ticket_priority') ? ' has-error' : '' }}">
                                 <label for="priority" class="form-label">Ticket Priority:</label>
                                 <select id="ticket_priority" type="" class="form-control" name="ticket_priority">
                                     <option value="">Select Priority</option>
-                                    <option value="Low">Low</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="High">High</option>
+                                    <option value="Low" {{($ticket->ticket_priority == 'Low') ? 'selected' : ''}}>Low</option>
+                                    <option value="Medium" {{($ticket->ticket_priority == 'Medium') ? 'selected' : ''}}>Medium</option>
+                                    <option value="High" {{($ticket->ticket_priority == 'High') ? 'selected' : ''}}>High</option>
                                 </select>
 
 
@@ -99,7 +104,7 @@
                             <label for="ticket_description" class="form-label">Description:</label>
 
 
-                                <textarea rows="8" id="ticket_description" class="form-control" name="ticket_description">{{ $ticket->ticket_description }}</textarea>
+                                <textarea rows="8" readonly id="ticket_description" class="form-control" name="ticket_description">{{ $ticket->ticket_description }}</textarea>
 
 
 
@@ -117,9 +122,58 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">@include('../flash-messages')</div>
+            {{-- Linkerkant --}}
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header text-orange"><b>Comments</b></div>
+                    <div class="card-body">
+
+                        <div class="comment-form">
 
 
-</form>
+                            <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+
+                            <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
+                                <textarea rows="3" id="comment" class="form-control" name="comment"></textarea>
+
+                                @if ($errors->has('comment'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('comment') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+
+                        </form>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+</div>
+
+
+
+
 </div>
 
 

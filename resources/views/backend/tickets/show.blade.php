@@ -14,15 +14,18 @@
 <div class="container">
     <div class="row row-cards">
         <div class="col-12  ">
-            <form method="post" action={{ url('/new_ticket') }} enctype="multipart/form-data">
-            @csrf
+
             <div class="card">
                 <div class="card-header">
                     <h3 class="h3 m-0 text-gray">Show Ticket '{{ $ticket->id }}' with ID '{{ $ticket->ticket_id }}'</h3>
                     <div class="card-options">
-                        <button type="submit" id="button" class="btn btn-success">Save changes</button>
-                        <a href="{{ route('tickets.create') }}" class="btn btn-danger btn-close ml-2">Cancel</a>
+                        <a href="{{ route('tickets.index') }}" class="btn btn-success btn-close ml-2">Ticket Overview</a>
+                        <a href="{{ route('tickets.edit',$ticket->id) }}" class="btn btn-primary btn-close ml-2">Add comment</a>
+                        <a href="{{ route('tickets.index') }}" class="btn btn-danger btn-close ml-2">Cancel</a>
                     </div>
+
+
+
                 </div>
             </div>
         </div>
@@ -92,12 +95,9 @@
                             @endif
                         </div>
 
-                            <div class="form-group">
+                        <div class="form-group">
                             <label for="ticket_description" class="form-label">Description:</label>
-                            <textarea rows="9" readonly id="ticket_description"  class="form-control" name="ticket_description">{{ $ticket->ticket_description }}</textarea>
-
-
-
+                            <textarea rows="5" readonly id="ticket_description"  class="form-control" name="ticket_description">{{ $ticket->ticket_description }}</textarea>
                         </div>
 
 
@@ -121,26 +121,29 @@
                     <div class="card-header text-orange"><b>Comments</b></div>
                     <div class="card-body">
 
-                        <div class="comment-form">
-                        <form action="{{ url('comment') }}" method="POST" class="form">
-                            {!! csrf_field() !!}
+                    <div class="comments">
+                        @if(!$comments->isEmpty())
+                        @foreach ($comments as $comment)
+                            <div class="panel panel-@if($ticket->user->id === $comment->user_id) {{"default"}}@else{{"success"}}@endif">
+                                <div class="panel panel-heading">
+                                    <b>{{ $comment->user->name }}commented at
+                                    <span class="pull-right">{{ $comment->created_at->format('d-m-Y H:i:s') }}</span>
+                                    </b>
+                                </div>
+                                <div class="panel panel-body">
+                                    {{ $comment->comment }}
+                                </div>
 
-                            <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
-
-                            <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
-                                <textarea rows="10" id="comment" class="form-control" name="comment"></textarea>
-
-                                @if ($errors->has('comment'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('comment') }}</strong>
-                                    </span>
-                                @endif
                             </div>
+                        @endforeach
+                        @else
+                         No comments yet on this ticket
+                        @endif
+</div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
+
+
+
                 </div>
 
 

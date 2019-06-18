@@ -97,7 +97,7 @@
 
                             <div class="form-group">
                                 <label class="form-label" for="description">Region:</label>
-                                <select name="brewery_province" id="region" class="form-control" style="width:350px">
+                                <select name="brewery_province" id="state" class="form-control" style="width:350px">
                                 </select>
                             </div>
 
@@ -134,7 +134,6 @@
 @endsection
 
 @section('scripts')
-@section('scripts')
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -147,32 +146,32 @@
     if(countryID){
         $.ajax({
            type:"GET",
-           url:"{{url('get-region-list')}}?country_id="+countryID,
+           url:"{{url('get-state-list')}}?country_id="+countryID,
            success:function(res){
             if(res){
-                $("#region").empty();
-                $("#region").append('<option>Select</option>');
+                $("#state").empty();
+                $("#state").append('<option>Select</option>');
                 $.each(res,function(key,value){
-                    $("#region").append('<option value="'+key+'">'+value+'</option>');
+                    $("#state").append('<option value="'+key+'">'+value+'</option>');
                 });
 
             }else{
-               $("#region").empty();
+               $("#state").empty();
             }
            }
         });
     }else{
-        $("#region").empty();
+        $("#state").empty();
         $("#city").empty();
     }
    });
-    $('#region').on('change',function(){
-    var regionID = $(this).val();
-    console.log(regionID);
-    if(regionID){
+    $('#state').on('change',function(){
+    var stateID = $(this).val();
+    console.log(stateID);
+    if(stateID){
         $.ajax({
            type:"GET",
-           url:"{{url('get-city-list')}}?region_id="+regionID,
+           url:"{{url('get-city-list')}}?state_id="+stateID,
            success:function(res){
             if(res){
                 $("#city").empty();

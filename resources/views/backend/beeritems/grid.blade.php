@@ -36,15 +36,20 @@
         @foreach($beeritems as $beeritem)
             <div class="col-md-3">
                 <div class="card">
-                    @if(!$beeritem->getMedia('BeeritemImagesCollection')->count() == 0)
-                        <a href="{{ route('beeritems.show', $beeritem->id)}}"><img class="card-img-top" src="{{ asset('storage/'. $beeritem->getMedia('BeeritemImagesCollection')[0]->id.'/'.$beeritem->getMedia('BeeritemImagesCollection')[0]->file_name)  }}" width="200" height="200" alt="{{$beeritem->name}}"></a>
-                    @else
+                    @if(!$beeritem->getMedia('imagesbeerglasses')->count() == 0)
+                        <a href="{{ route('beeritems.show', $beeritem->id)}}"><img class="card-img-top" src="{{ asset('storage/'. $beeritem->getMedia('images_beerglasses')[0]->id.'/'.$beeritem->getMedia('images_beerglasses')[0]->file_name)  }}" width="200" height="200" alt="{{$beeritem->name}}"></a>
+
+                    asset('storage/'. $image->id.'/'.$image->file_name)
+
+                        @else
                         <a href="{{ route('beeritems.show', $beeritem->id)}}"><img class="card-img-top" src="{{ asset('storage/nopicture/nopic_200_200.png') }}" alt="{{$beeritem->item_name}}"></a>
                     @endif
                     <div class="card-body d-flex flex-column">
                         <h4>{{$beeritem->item_name}}</h4>
                         <div class="text-muted">{{$beeritem->collection->collection_name}}</div>
-                        <div class="d-flex pt-5">
+
+                        <div class="d-flex pt-5 p-2">
+
                               <a href="{{ route('beeritems.show',$beeritem->id)}}" class="btn btn-warning btn-sm">Show</a>
                               <a href="{{ route('beeritems.edit',$beeritem->id)}}" class="btn btn-success btn-sm">Edit</a>
                               <form action="{{ route('beeritems.destroy', $beeritem->id)}}" method="post">
@@ -52,6 +57,7 @@
                                                     @method('DELETE')
                                                     <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                                                     </form>
+
                         </div>
                     </div>
                 </div>

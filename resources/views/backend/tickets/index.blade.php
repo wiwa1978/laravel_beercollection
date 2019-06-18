@@ -96,8 +96,8 @@
                                                 <i class="fe fe-calendar mr-2"></i>Actions
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item text-orange" href="{{ route('tickets.edit',$ticket->id)}}">Edit</a>
-                                                <a class="dropdown-item text-blue" href="{{ route('tickets.show',$ticket->id)}}">Show</a>
+                                                <a class="dropdown-item text-orange" href="{{ route('tickets.edit',$ticket->id)}}">Add comment</a>
+                                                <a class="dropdown-item text-blue" href="{{ route('tickets.show',$ticket->id)}}">Show ticket and comments</a>
                                                  <form action="" method="post">
                                                     @csrf
                                                     @method('DELETE')

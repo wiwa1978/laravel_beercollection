@@ -32,7 +32,7 @@ class BreweryController extends Controller
      */
     public function create()
     {
-        $countries = DB::table("countries")->pluck("country_name","id");
+        $countries = DB::table("countries")->pluck("name","id");
         return view('backend.breweries.create',compact('countries'));
 
     }
@@ -40,23 +40,23 @@ class BreweryController extends Controller
 
     public function getCountryList()
     {
-        $countries = DB::table("countries")->pluck("country_name","id");
+        $countries = DB::table("countries")->pluck("name","id");
         return view('backend.breweries.create',compact('countries'));
     }
 
-    public function getRegionList(Request $request)
+    public function getStateList(Request $request)
     {
-        $states = DB::table("regions")
+        $states = DB::table("states")
             ->where("country_id",$request->country_id)
-            ->pluck("region_name","id");
+            ->pluck("name","id");
         return response()->json($states);
     }
 
     public function getCityList(Request $request)
     {
         $cities = DB::table("cities")
-            ->where("region_id",$request->region_id)
-            ->pluck("city_name","id");
+            ->where("state_id",$request->state_id)
+            ->pluck("name","id");
         return response()->json($cities);
     }
 

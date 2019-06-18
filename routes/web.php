@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::view('manual', 'backend.manual.index')->name('manual.index');
 
     // Routes for Support
+    Route::post('comment', 'CommentsController@postComment')->name('comments.create');
     Route::resource('tickets', 'TicketController');
 
     //Route::get('new_ticket', 'TicketController@create')->name('tickets.create');
@@ -87,7 +88,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 
 
     Route::get('dropdownlist','BreweryController@getCountryList');
-    Route::get('get-region-list','BreweryController@getRegionList');
+    Route::get('get-state-list','BreweryController@getStateList');
     Route::get('get-city-list','BreweryController@getCityList');
 
 

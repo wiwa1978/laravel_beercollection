@@ -245,7 +245,7 @@
                                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Support</a>
                                     <div class="dropdown-menu dropdown-menu-arrow">
                                     <a href="{{ route('tickets.create',['item_type' => 'beerglasses']) }}" class="dropdown-item ">Create Ticket</a>
-                                    <a href="{{ route('tickets.index',['item_type' => 'beerglasses']) }}" class="dropdown-item ">Tickets Overview</a>
+                                    <a href="{{ route('tickets.index') }}" class="dropdown-item ">Tickets Overview</a>
 
                                     </div>
                                 </li>
