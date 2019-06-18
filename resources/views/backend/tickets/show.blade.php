@@ -60,21 +60,7 @@
 
                             </div>
 
-                            <div>
-    <label for="ticket_tags" class="form-label">Ticket Tags:</label>
-@foreach($ticket->tags as $tag)
-                                            <span class="tag tag-green">{{ $tag->name }}</span>
 
-                                        @endforeach
-
-
-
-
-
-
-
-
-</div>
 
 
 
@@ -106,9 +92,9 @@
                             @endif
                         </div>
 
-                            <div class="form-group{{ $errors->has('ticket_description') ? ' has-error' : '' }}">
+                            <div class="form-group">
                             <label for="ticket_description" class="form-label">Description:</label>
-                            <textarea rows="9" id="ticket_description" readonly class="form-control" name="ticket_description" value="{{ old('ticket_description') }}"></textarea>
+                            <textarea rows="9" readonly id="ticket_description"  class="form-control" name="ticket_description">{{ $ticket->ticket_description }}</textarea>
 
 
 

@@ -47,7 +47,7 @@
 
                             <div class="form-group{{ $errors->has('ticket_title') ? ' has-error' : '' }}">
                                 <label for="ticket_title" class="form-label">Title:</label>
-                                <input id="ticket_title" type="text" class="form-control" name="ticket_title" value="{{ 'ticket_title' }}">
+                                <input id="ticket_title" type="text" class="form-control" name="ticket_title" value="{{  $ticket->ticket_title }}">
 
 
                             </div>
@@ -75,21 +75,6 @@
 
 
                             </div>
-<div>
-    <label for="ticket_tags" class="form-label">Ticket Tags:</label>
-@foreach($ticket->tags as $tag)
-                                            <span class="tag tag-green">{{ $tag->name }}</span>
-
-                                        @endforeach
-
-
-
-
-
-
-
-
-</div>
 
 
 
@@ -110,11 +95,11 @@
 
                         <fieldset class="form-fieldset">
 
-                            <div class="form-group{{ $errors->has('ticket_description') ? ' has-error' : '' }}">
+                            <div class="form-group">
                             <label for="ticket_description" class="form-label">Description:</label>
 
 
-                                <textarea rows="8" id="ticket_description" class="form-control" name="ticket_description" value="{{ old('ticket_description') }}"></textarea>
+                                <textarea rows="8" id="ticket_description" class="form-control" name="ticket_description">{{ $ticket->ticket_description }}</textarea>
 
 
 

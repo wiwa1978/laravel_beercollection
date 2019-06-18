@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('beeritems/test','BeerItemController@test')->name('beeritems.test');
 
 
-     Route::get('beeritems/qr','BeerItemController@generateQR')->name('beeritems.qr');
+     Route::get('beeritems/{beeritem}/qr','BeerItemController@generateQR')->name('beeritems.qr');
     //Route::get('beeritems/{collection}', 'BeerItemController@index')->name('beeritems.index');
     //Route::get('beeritems/create', 'BeerItemController@create')->name('beeritems.create');
 

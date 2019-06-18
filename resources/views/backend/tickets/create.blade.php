@@ -80,18 +80,6 @@
 
 
 
-<div class="form-group">
-			<label>Tags:</span>
-			<br/>
-			<input data-role="tagsinput" type="text" name="tags" >
-			@if ($errors->has('tags'))
-                <span class="text-danger">{{ $errors->first('tags') }}</span>
-
-            @endif
-		</div>
-
-
-
 
 
                         </fieldset>
@@ -139,28 +127,10 @@
 
 @endsection
 
-@section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
-
-
-
-
-    <script>
-            $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
-        });
-    </script>
 
 
 
 
 
 
-
-@endsection
 

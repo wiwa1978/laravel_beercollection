@@ -25,8 +25,7 @@
                     <div class="card-options">
     	                @if( strtolower($type) != 'beeritems' )
                         <a href="{{ route('beeritems.create',['item_type' => $type ]) }}" class="btn btn-primary">Create {{ $type }}</a>
-                        @else
-                        <a href="{{ route('beeritems.create') }}" class="btn btn-primary">Create {{ $type }}</a>
+
                         @endif
                     </div>
 

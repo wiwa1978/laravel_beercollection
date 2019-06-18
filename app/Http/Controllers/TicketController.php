@@ -16,7 +16,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::with('tagged')->where('user_id', Auth::user()->id)->paginate(10);
+        $tickets = Ticket::where('user_id', Auth::user()->id)->paginate(10);
         $ticket_types = TicketType::all();
 
         return view('backend.tickets.index', compact('tickets', 'ticket_types'));

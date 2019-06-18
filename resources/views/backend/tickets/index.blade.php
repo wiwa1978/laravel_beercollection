@@ -60,7 +60,7 @@
                                     <td>Ticket Priority</td>
                                     <td>Ticket Status</td>
                                     <td>Last Updated</td>
-                                    <td>Tags</td>
+
                                     <td align="center">Action</td>
                                 </tr>
                             </thead>
@@ -88,14 +88,8 @@
                                         <span class="tag tag-green">{{ $ticket->ticket_status }}</span>
                                     @endif
                                     </td>
-                                    <td>{{ $ticket->updated_at }}</td>
-                                    <td>
+                                    <td>{{ $ticket->updated_at->format('d-m-Y') }}</td>
 
-                                        @foreach($ticket->tags as $tag)
-                                            <span class="tag tag-green">{{ $tag->name }}</span>
-
-                                        @endforeach
-                                    </td>
                                     <td align="center">
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">

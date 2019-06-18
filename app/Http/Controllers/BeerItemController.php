@@ -73,9 +73,15 @@ class BeeritemController extends Controller
     }
 
 
-    public function generateQR(Request $request)
+    public function generateQR(Beeritem $beeritem)
     {
-        return view('backend.beeritems.qr_code');
+        $msg = "http://localhost:8000/beeritems/" . $beeritem->id ;
+        $tags =  Tag::where('user_id', Auth::id())->get();
+        $category = $beeritem->category()->first();
+        $brewery = $beeritem->brewery()->first();
+        $collection = $beeritem->collection()->first();
+
+        return view('backend.beeritems.qr_code', compact('beeritem', 'msg', 'tags', 'category', 'brewery', 'collection'));
 
     }
 

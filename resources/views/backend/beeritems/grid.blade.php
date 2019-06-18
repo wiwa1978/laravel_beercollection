@@ -13,9 +13,7 @@
                 <div class="card-header">
 
                     <h3 class="h3 m-0 text-gray">Beerglasses Overview</h3>
-                     <div class="card-options">
-                        <a href="{{ route('beeritems.create') }}" class="btn btn-primary">Create {{ $type }}</a>
-                </div>
+
                 </div>
 
 
