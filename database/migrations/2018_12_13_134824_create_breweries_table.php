@@ -22,10 +22,11 @@ class CreateBreweriesTable extends Migration
             $table->string('brewery_name');
             $table->string('brewery_description')->nullable();
             $table->integer('brewery_zipcode');
-            $table->string('brewery_town');
-            $table->string('brewery_subtown')->nullable();
-            $table->string('brewery_province')->nullable();
+            $table->string('brewery_city');
+            $table->string('brewery_subcity')->nullable();
+            $table->string('brewery_state')->nullable();
             $table->string('brewery_country');
+            $table->text('brewery_history')->nullable();;
             $table->timestamps();
         });
     }

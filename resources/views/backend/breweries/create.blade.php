@@ -44,7 +44,7 @@
 
                         <fieldset class="form-fieldset">
 
-                                 <form method="post" action="{{ route('breweries.store') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('breweries.store') }}" enctype="multipart/form-data">
                         @csrf
 
                             <div class="form-group">
@@ -57,35 +57,7 @@
                                 <input type="text" class="form-control" name="brewery_description" value="{{ old('brewery_description') }}"/>
                             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        </fieldset>
-                    </div>
-                </div>
-            </div>
-
-
-            {{-- Rechterkant --}}
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header text-orange"><b>Brewery Address</b></div>
-
-                    <div class="card-body">
-
-                        <fieldset class="form-fieldset">
-
-                                                <div class="form-group">
+                              <div class="form-group">
                                 <label class="form-label" for="description">Country:</label>
                                 <select name="brewery_country" id="country" class="form-control" style="width:350px" >
                                     <option value="" selected disabled></option>
@@ -113,6 +85,44 @@
                             </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+
+            {{-- Rechterkant --}}
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-orange"><b>Additional information</b></div>
+
+                    <div class="card-body">
+
+                        <fieldset class="form-fieldset">
+                            <div class="form-group">
+                                <label class="form-label" for="description">History</label>
+                                <textarea rows="5" id="ticket_description" class="form-control" name="ticket_description" value="{{ old('ticket_description') }}"></textarea>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="form-label" for="document">Images</label>
+                                <div class="dropzone" id="breweryDropzone">
+                            </div>
                         </form>
 
 
@@ -127,6 +137,9 @@
 
 
 
+
+
+
 </form>
 </div>
 
@@ -134,6 +147,12 @@
 @endsection
 
 @section('scripts')
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -190,6 +209,69 @@
 
    });
 </script>
+    <script>
+        button.disabled = false;
+        //document.getElementById("test").style.display = "none";
+        var uploadedDocumentMap = {};
+        Dropzone.options.breweryDropzone = {
+            url: '{{ route('brewery.image.store') }}',
+            maxFiles: 8,
+            maxFilesize: 10,
+            addRemoveLinks: true,
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            uploadMultiple: false,
+            parallelUploads: 4,
+            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            timeout: 5000,
+
+            success: function (file, response) {
+                console.log(response);
+                button.disabled = false;
+                $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+                uploadedDocumentMap[file.name] = response.name
+                console.log(uploadedDocumentMap[file.name] );
+            },
+            removedfile: function (file) {
+                file.previewElement.remove()
+                var name = ''
+                if (typeof file.file_name !== 'undefined') {
+                    name = file.file_name
+                } else {
+                    name = uploadedDocumentMap[file.name]
+                }
+                $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+            },
+            init: function () {
+                @if(isset($brewery) && $brewery->document)
+                    var files =
+                    {!! json_encode($brewery->document) !!}
+                    for (var i in files) {
+                    var file = files[i]
+                    this.options.addedfile.call(this, file)
+                    file.previewElement.classList.add('dz-complete')
+                    $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
+                    }
+                @endif
+                }
+            ,
+
+
+
+            error: function(file, response) {
+                //document.getElementById("test").style.display = "block";
+                //document.getElementById("test").innerHTML = response;
+                console.log(response);
+                return false;
+            }
+        };
+
+
+
+    </script>
+
+
 
 @endsection
 

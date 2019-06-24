@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Brewery;
 use App\Category;
+use App\Country;
+use App\State;
+use App\City;
 use DB;
+use Spatie\Image\Image;
+use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -60,6 +65,36 @@ class BreweryController extends Controller
         return response()->json($cities);
     }
 
+
+    public function storeImage(Request $request)
+    {
+        $path = storage_path('tmp/uploads/breweries/');
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $file = $request->file('file');
+        $imageName = $file->getClientOriginalName();
+
+        $name = 'user_' . Auth::id() . '_' . uniqid() . '_' . trim($file->getClientOriginalName());
+        $file->move($path, $name);
+
+        Image::load($path .'/'.$name)
+            ->width(500)
+            ->height(500)
+            ->optimize()
+            ->save(storage_path('tmp/uploads/breweries/final_'. $name ));
+
+        unlink(storage_path('tmp/uploads/breweries/'. $name ));
+        //$request->session()->push('filenames', '_new'.$imageName);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -75,12 +110,17 @@ class BreweryController extends Controller
             'brewery_name' => $request->brewery_name,
             'brewery_description' => $request->brewery_description,
             'brewery_zipcode' => $request->brewery_zipcode,
-            'brewery_subtown' => $request->brewery_subtown,
-            'brewery_town' => $request->brewery_town,
-            'brewery_province' => $request->brewery_province,
+            'brewery_subcity' => $request->brewery_subcity,
+            'brewery_city' => $request->brewery_city,
+            'brewery_state' => $request->brewery_state,
             'brewery_country' => $request->brewery_country,
+            'brewery_history' => $request->brewery_history,
         ]);
+
         $brewery->save();
+        foreach ($request->input('document', []) as $file) {
+            $brewery->addMedia(storage_path('tmp/uploads/breweries/final_' . $file ))->toMediaCollection('images_breweries');
+        }
 
         return redirect('/breweries')->with('success', 'Brewery has been added successfully');
     }
@@ -94,7 +134,12 @@ class BreweryController extends Controller
     public function show(Brewery $brewery)
     {
         if($brewery->user_id == Auth::id()) {
-            return view('backend.breweries.show', compact('brewery'));
+            $country = Country::where('id', $brewery->brewery_country)->first();
+            $state = State::where('id', $brewery->brewery_state)->first();
+            $city = City::where('id', $brewery->brewery_city)->first();
+            //$country = Brewery::find(1)->country;
+
+            return view('backend.breweries.show', compact('brewery', 'country', 'state', 'city'));
         }
         else {
             abort(403);
@@ -131,9 +176,9 @@ class BreweryController extends Controller
             $brewery->brewery_name = $request->brewery_name;
             $brewery->brewery_description = $request->brewery_description;
             $brewery->brewery_zipcode = $request->brewery_zipcode;
-            $brewery->brewery_town = $request->brewery_town;
-            $brewery->brewery_subtown = $request->brewery_subtown;
-            $brewery->brewery_province = $request->brewery_province;
+            $brewery->brewery_city = $request->brewery_city;
+            $brewery->brewery_subcity = $request->brewery_subcity;
+            $brewery->brewery_state = $request->brewery_state;
             $brewery->brewery_country = $request->brewery_country;
             $brewery->save();
 

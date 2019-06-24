@@ -3,11 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Brewery extends Model
+class Brewery extends Model implements HasMedia
 {
+    use HasMediaTrait;
+
     protected $fillable = [
-        'user_id', 'brewery_name', 'brewery_description', 'brewery_zipcode', 'brewery_town', 'brewery_subtown', 'brewery_province', 'brewery_country', 'created_at', 'updated_at'
+        'user_id', 'brewery_name', 'brewery_description', 'brewery_zipcode', 'brewery_city', 'brewery_subcity', 'brewery_state', 'brewery_country', 'created_at', 'updated_at'
     ];
 
     public function user()
@@ -19,4 +23,6 @@ class Brewery extends Model
     {
         return $this->hasMany('App\Beeritem');
     }
+
+
 }

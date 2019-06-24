@@ -26,7 +26,7 @@ class storeBrewery extends FormRequest
         return [
             'brewery_name'=>'required|min:3|max:255',
             'brewery_zipcode'=>'required|max:255',
-            'brewery_town'=>'required|max:255',
+            'brewery_city'=>'required|max:255',
             'brewery_country'=>'required|max:255',
         ];
     }
@@ -40,8 +40,8 @@ class storeBrewery extends FormRequest
     {
         return [
             'brewery_name.required' => 'The name of the brewery is required',
-            'brewery_zipcode.required' => 'The zipcode of the town where the brewery is located is required',
-            'brewery_town.required'=> 'The town where the brewery is located required',
+            'brewery_zipcode.required' => 'The zipcode of the city where the brewery is located is required',
+            'brewery_city.required'=> 'The city where the brewery is located required',
             'brewery_country.required'=> 'The country where the brewery is located is required',
         ];
     }

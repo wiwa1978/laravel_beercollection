@@ -198,6 +198,8 @@ class BeeritemController extends Controller
         //return $request;
         $validated = $request->validated();
 
+
+
         /*
         $validator = Validator::make($request->all(), [
             'item_name'=>'required',
@@ -269,7 +271,7 @@ class BeeritemController extends Controller
                 case 'beerlabels':
                     $beeritem->addMedia(storage_path('tmp/uploads/final_'. $file ))->toMediaCollection('images_beerlabels');
                     break;
-                case 'beerlcoasters':
+                case 'beercoasters':
                     $beeritem->addMedia(storage_path('tmp/uploads/final_'. $file ))->toMediaCollection('images_beercoaster');
                     break;
                 case 'beerashtrays':

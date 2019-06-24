@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 
     //Routes for Image
     Route::post('image/store','BeeritemController@storeImage')->name('image.store');
+    Route::post('brewery/image/store','BreweryController@storeImage')->name('brewery.image.store');
 
 
     Route::view('profile', 'backend.profile.index')->name('profile.index');
